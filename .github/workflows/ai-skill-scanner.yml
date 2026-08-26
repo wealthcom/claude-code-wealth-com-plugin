@@ -1,0 +1,86 @@
+name: Scan Skills
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "skills/**"
+      - ".github/workflows/ai-skill-scanner.yml"
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  scan:
+    name: Skill Scanner
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install skill-scanner
+        run: pip install "cisco-ai-skill-scanner~=2.0.12"
+
+      - name: Run scan
+        id: scan
+        run: |
+          set +e
+          skill-scanner scan-all ./skills/ \
+            --format markdown --detailed \
+            --policy balanced --recursive --check-overlap --lenient \
+            --output-markdown report.md \
+            --fail-on-severity high
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Build comment
+        if: always()
+        env:
+          SCAN_EXIT: ${{ steps.scan.outputs.exit_code }}
+        run: |
+          {
+            echo "## 🛡️ Agent Skills Security Scan"
+            echo
+            if [ "$SCAN_EXIT" = "0" ]; then
+              echo "✅ **Gate passed** — no findings at or above \`high\` severity."
+            else
+              echo "❌ **Gate failed** — findings at or above \`high\` severity block this PR."
+            fi
+            echo
+            echo "<details>"
+            echo "<summary>Full findings report</summary>"
+            echo
+            if [ -s report.md ]; then
+              cat report.md
+            else
+              echo "_No report was generated._"
+            fi
+            echo
+            echo "</details>"
+          } > comment.md
+
+      - name: Comment report on PR
+        if: always()
+        uses: marocchino/sticky-pull-request-comment@0ea0beb66eb9baf113663a64ec522f60e49231c0 # v3.0.4
+        with:
+          header: skill-scanner
+          path: comment.md
+
+      - name: Enforce severity gate
+        if: always() && steps.scan.outputs.exit_code != '0'
+        run: |
+          echo "::error::Skill Scanner found findings at or above 'high' severity"
+          exit 1
