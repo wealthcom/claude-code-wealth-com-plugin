@@ -1,0 +1,13 @@
+{
+  "name": "wealth-com-claude-code-plugin-marketplace",
+  "owner": {
+    "name": "Wealth.com"
+  },
+  "plugins": [
+    {
+      "name": "wealth-com-claude-code-plugin",
+      "source": "./",
+      "description": "Estate planning, balance sheet, and tax skills for financial advisors, backed by Wealth.com's live client data."
+    }
+  ]
+}
