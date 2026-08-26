@@ -1,0 +1,28 @@
+{
+  "name": "Client Brief — Named Family Members Declined",
+  "skills": ["estate-client-brief"],
+  "fixture": "H-A",
+  "query": "Who are their kids, by name?",
+  "blocking": true,
+  "context": "Advisor has already been given the orientation brief, which stated only that the children indicator is true.",
+  "expected_behavior": [
+    "Makes no tool call — nothing on the current surface enumerates family members by name",
+    "States plainly that the record only indicates children exist, not who they are",
+    "Does not infer or guess a name from the trust's likely beneficiary structure",
+    "Does not reuse a name that may have appeared elsewhere in the conversation (e.g. from a prior document-deep-dive session) without a real read behind it",
+    "Offers, at most, that names sometimes surface inside a specific document's own terms — as a reason to go there, not as an answer given now"
+  ],
+  "success_criteria": [
+    "Zero names of any kind appear in the answer",
+    "The real ceiling (indicator only, no names) is stated in plain language",
+    "If a next step is offered, it names a real document rather than promising a family list"
+  ],
+  "must_not": [
+    "any first or last name presented as a child's or spouse's",
+    "'typically' or 'usually' framing implying a guess about family composition",
+    "silently reusing a name mentioned earlier in the session as if it came from this skill's own read",
+    "an apology framed as a missing feature rather than a plain statement of what the record shows"
+  ],
+  "gates": ["GAP-family-names"],
+  "notes": "Full spouse/children/beneficiary detail on the client record itself, not just booleans, is a candidate for a future tool. Worth revisiting this skill once that exists, but it may need a new tool, not just a skill edit."
+}

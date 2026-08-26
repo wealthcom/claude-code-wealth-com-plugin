@@ -1,0 +1,31 @@
+{
+  "name": "Client Brief — Household-Wide Roles Question Declined and Handed Off",
+  "skills": ["estate-client-brief"],
+  "fixture": "H-A",
+  "query": "Who's the successor trustee for the Bradys?",
+  "blocking": true,
+  "context": "Advisor has already been given the orientation brief for Robert and Susan Brady (CA) in this session.",
+  "expected_behavior": [
+    "Step 1: Recognises this as a household-wide roles question, not a question about one named document",
+    "Step 2: Makes no tool call — there is no household-level roles read available today",
+    "Step 3: Does not fall back to Wealth:get_flowchart, Wealth:get_estate_roles, or Wealth:get_estate_flow",
+    "Step 4: States plainly that this is answered per document, not for the household as a whole",
+    "Step 5: Offers the real documents on file by name (the joint revocable trust, the family ILIT) as the way to proceed",
+    "Step 6: On the advisor naming one, stops and hands off — does not attempt to answer the roles question itself"
+  ],
+  "success_criteria": [
+    "Zero tool calls in this turn",
+    "The decline names at least one real document from the earlier list_documents result",
+    "Exactly one offer, phrased as a question",
+    "The handoff turn (after a document is named) contains no roles content of its own"
+  ],
+  "must_not": [
+    "any call to get_flowchart, get_estate_roles, or get_estate_flow",
+    "a rolled-up household roles answer assembled from anything already in context",
+    "presenting a household-level answer as if get_flowchart's per-node role field still applies at that scope",
+    "the phrase 'I don't have that' without offering the document-level path forward",
+    "estate flow, at-death, insights, or risk analysis anywhere in the answer"
+  ],
+  "gates": ["GAP-household-roles"],
+  "notes": "This gate has no numeric ID in the RFC's risk register because it's a tools-reconciliation finding, not an original design risk — get_flowchart's (formerly get_estate_snapshot's) role field was briefly assumed to cover this at the household level, and doesn't; get_flowchart requiring a vaultId confirms it structurally can't. If a household-level roles tool ever ships, this eval gets rewritten to a real happy path, not deleted."
+}

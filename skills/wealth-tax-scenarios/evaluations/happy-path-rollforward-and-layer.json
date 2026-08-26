@@ -1,0 +1,27 @@
+{
+  "name": "Tax Scenarios — Roll Forward, Drop One-Time Gain, Layer a Roth Conversion",
+  "skills": ["wealth-tax-scenarios"],
+  "fixture": "Riley",
+  "query": "Roll them forward to 2026 — and the $42,500 in gains last year was a one-off, so leave it out. [later] Now layer a $200k Roth conversion on top of that 2026 picture — what does it cost them?",
+  "expected_behavior": [
+    "Step 1: Reads the 2025 filed figures (get_lookback_report or get_extraction_form) to confirm the exact one-time gain amount rather than trusting the advisor's rounded figure blindly",
+    "Step 2: Calls model_tax_scenario with baselineYear 2025, targetYear 2026, and a change netting out the $42,500 long-term gain",
+    "Step 3: Reports both the 2025 filed figure and the 2026 rolled-forward figure, with the difference",
+    "Step 4: On the follow-up, calls model_tax_scenario again with the same baseline/target plus an added roth_conversion_taxable change of 200000",
+    "Step 5: Reports the conversion's cost as a delta against the 2026 baseline just built, not a bare new number"
+  ],
+  "success_criteria": [
+    "changeBy on the one-time-gain change is negative (a reduction), never a new total",
+    "targetYear (2026) is explicitly distinct from baselineYear (2025) in both calls",
+    "The Roth conversion answer states the dollar difference against the prior 2026 result, e.g. '$X more than the 2026 picture we just built'",
+    "Every rate mentioned carries its dollar tax and income basis",
+    "No blended federal+state rate percentage appears"
+  ],
+  "must_not": [
+    "rolling the $42,500 gain forward into 2026 without it being asked about",
+    "presenting the Roth conversion's cost as a bare new total with no baseline comparison",
+    "any tool name or field path in advisor-facing text",
+    "a claim that either scenario was saved or persisted"
+  ],
+  "gates": ["no-silent-rollforward", "delta-not-bare-number"]
+}

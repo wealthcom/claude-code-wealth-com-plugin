@@ -1,0 +1,20 @@
+{
+  "name": "Tax Scenarios — Should NOT Trigger",
+  "skills": ["wealth-tax-scenarios"],
+  "fixture": "Riley",
+  "queries_that_should_not_trigger_this_skill": [
+    { "query": "What did the Rileys' 2025 return show?", "belongs_to": "wealth-tax-executive-summary" },
+    { "query": "Summarize their tax situation for last year", "belongs_to": "wealth-tax-executive-summary" },
+    { "query": "What do the Rileys own?", "belongs_to": "wealth-balance-sheet-review" },
+    { "query": "Walk me through the Riley trust", "belongs_to": "wealth-estate-document-deep-dive" },
+    { "query": "Compare their 2023 and 2024 filed returns", "belongs_to": "wealth-tax-executive-summary" }
+  ],
+  "success_criteria": [
+    "Zero calls to run_tax_calculation, model_tax_scenario, or get_tax_calculation_inputs for any of these queries",
+    "Each query is either answered by the correct skill's territory, or this skill hands off explicitly with no calculation attempted"
+  ],
+  "must_not": [
+    "modeling any of these as an unfiled-year scenario",
+    "silently answering a filed-return or estate question with a scenario tool"
+  ]
+}

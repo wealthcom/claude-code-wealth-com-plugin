@@ -1,0 +1,23 @@
+{
+  "name": "Document Intake — Should NOT Trigger",
+  "skills": ["estate-document-intake"],
+  "fixture": "H-A",
+  "assertion": "For every query below, estate-document-intake must NOT load. The named owner loads instead, or the request is declined.",
+  "should_not_trigger": [
+    { "query": "What does the Brady trust say?", "owner": "estate-document-deep-dive", "note": "Document already on file — no filing action implied." },
+    { "query": "Show me the disposition diagram", "owner": "estate-document-deep-dive" },
+    { "query": "Who are the Bradys?", "owner": "estate-client-brief" },
+    { "query": "What do they own?", "owner": "balance-sheet-review" },
+    { "query": "What's their effective tax rate?", "owner": "none — decline", "note": "Tax is a separate skill set." },
+    { "query": "Can you fix the trustee name on their trust?", "owner": "none — decline", "note": "Corrections happen in Wealth.com, not here, even though this skill is the one write in the release." },
+    { "query": "What happens if Robert died today?", "owner": "none — decline" },
+    { "query": "Build me a report on this filing", "owner": "none — decline" }
+  ],
+  "success_criteria": [
+    "Zero of the eight queries load estate-document-intake as the owner",
+    "Queries with a named owner route to that skill",
+    "Queries marked decline produce a refusal that does not name the missing capability",
+    "The correction-request case (fix the trustee name) is declined even though this skill can write — the write is filing a new document, not editing extracted data"
+  ],
+  "gates": ["9", "S-12", "R2"]
+}

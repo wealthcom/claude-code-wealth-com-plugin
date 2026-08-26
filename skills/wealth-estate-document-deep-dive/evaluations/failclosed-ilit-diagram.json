@@ -1,0 +1,40 @@
+{
+  "name": "Deep Dive — Diagram Fails Closed on Unsupported Type",
+  "skills": ["estate-document-deep-dive"],
+  "fixture": "H-A",
+  "query": "Show me the disposition diagram for the Brady family ILIT",
+  "blocking": true,
+  "expected_behavior": [
+    "Step 1: Resolves the client via Wealth:find_client and disambiguates between the two Brady households",
+    "Step 2: Reads the family ILIT's readingState off list_documents (already in hand) as ready",
+    "Step 3: Calls Wealth:get_flowchart(wid, vaultId) scoped to this specific document's vaultId — get_flowchart is per-document, replacing the earlier whole-client get_estate_snapshot call",
+    "Step 4: The tool reports no structure on file for this document, per its own documented behavior ('when no structure is on file the answer says so rather than showing an empty one') rather than returning an empty or generic structure",
+    "Step 5: Consults reference/document-states.md for the unsupported-type behaviour",
+    "Step 6: States plainly that this document has no disposition diagram of its own",
+    "Step 7: Explains in advisor language that this document's type isn't covered — without naming internal types, extractors, vaultId, or coverage sets",
+    "Step 8: Distinguishes this from a failure — the document read successfully",
+    "Step 9: Offers the document's terms as the alternative, phrased as a question"
+  ],
+  "success_criteria": [
+    "The response contains no diagram, no image, and no visual substitute",
+    "The response contains no node list, edge list, or table representing diagram structure",
+    "The document is named as an advisor would recognise it, with its September 2021 execution date",
+    "The reason is given in advisor language, not as an error or a status code",
+    "The response does not characterise the document as failed, unprocessed, or still being read",
+    "Exactly one offer, and it is the document's terms",
+    "Tool sequence is Wealth:find_client then Wealth:list_documents then Wealth:get_flowchart(wid, vaultId=ILIT) — no retry, no second call, no call to get_document_info or any other nonexistent tool",
+    "get_flowchart is called with THIS document's vaultId, not the joint revocable trust's vaultId from a prior turn"
+  ],
+  "must_not": [
+    "any generated, drawn, described, or approximated diagram",
+    "a table of nodes and edges, or any structural rendering of the graph",
+    "the phrases roughly what it would look like, here is the structure in text, or I can describe it instead",
+    "a second attempt at the diagram through any other tool",
+    "presenting the document as failed, pending, or still processing",
+    "apologising for a system error — this is a coverage boundary, not a fault",
+    "offering a report, scenario, estate flow, insights, or risk analysis as consolation",
+    "substituting or referencing another document's diagram from earlier in the conversation"
+  ],
+  "gates": ["3", "S-3"],
+  "notes": "get_flowchart is scoped per-document by vaultId, resolving the prior open question about whether get_estate_snapshot could ever be scoped to one document. This eval asserts the sharper per-document assertion. Not every document type has a deterministic diagram — this eval covers that expected fail-closed case, which is real, ordinary behavior, not a hypothetical edge case."
+}

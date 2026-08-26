@@ -1,0 +1,21 @@
+{
+  "name": "Tax Executive Summary — Should NOT Trigger",
+  "skills": ["wealth-tax-executive-summary"],
+  "fixture": "Riley",
+  "queries_that_should_not_trigger_this_skill": [
+    { "query": "Give me the executive summary of the Rileys' revocable trust", "belongs_to": "wealth-estate-document-deep-dive" },
+    { "query": "What would they owe if David converts $200k to a Roth this year?", "belongs_to": "wealth-tax-scenarios" },
+    { "query": "Show me 2026 for the Rileys with the new tax law updates", "belongs_to": "wealth-tax-scenarios" },
+    { "query": "What do the Rileys own?", "belongs_to": "wealth-balance-sheet-review" },
+    { "query": "Who's the trustee under the Riley trust?", "belongs_to": "wealth-estate-document-deep-dive" },
+    { "query": "Are they on track with withholding for 2026, or will they owe at filing?", "belongs_to": "wealth-tax-scenarios" }
+  ],
+  "success_criteria": [
+    "Zero calls to get_lookback_report, get_extraction_form, get_federal_tax_constants, or get_state_tax_constants for any of these queries",
+    "Each query is either answered by the correct skill's territory or, if this skill briefly loads, is handed off explicitly in the first sentence with no data pulled"
+  ],
+  "must_not": [
+    "producing a tax executive summary in response to any of these queries",
+    "silently answering an estate, balance-sheet, or forward-looking modeling question with filed-return data"
+  ]
+}

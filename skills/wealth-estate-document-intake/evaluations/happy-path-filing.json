@@ -1,0 +1,31 @@
+{
+  "name": "Document Intake — Filing Happy Path",
+  "skills": ["estate-document-intake"],
+  "fixture": "H-A",
+  "query": "Add this to the Bradys — it's their new POA",
+  "expected_behavior": [
+    "Step 1: Calls Wealth:find_client with the name the advisor used",
+    "Step 2: Finds two matching households and asks which, as a table, before any upload call",
+    "Step 3: On the advisor naming California, calls Wealth:upload_extract_document with wid, fileName, fileKind, and advisorConfirmed left unset",
+    "Step 4: Lets the tool's own step-up confirmation fire rather than self-attesting advisorConfirmed: true",
+    "Step 5: On confirmation, states the document is filed and being sent, without claiming it has been read",
+    "Step 6: Calls Wealth:get_extraction_result once with wait left unset (holding), not in a polling loop",
+    "Step 7: On a running result with a retry_after_ms, waits that long before checking again rather than immediately",
+    "Step 8: On succeeded, offers the summary by document name and defers further detail to wealth-estate-document-deep-dive"
+  ],
+  "success_criteria": [
+    "Nothing is filed before the client is resolved and confirmed",
+    "advisorConfirmed is only ever set to true following an explicit, client-named advisor confirmation in the transcript",
+    "get_extraction_result is called exactly once per reading collected, not in a call-back-to-back loop",
+    "The answer never claims the document is 'uploaded' before real confirmation the bytes moved",
+    "Tool sequence is Wealth:find_client (1x or 2x if disambiguation needed) then Wealth:upload_extract_document (1x) then Wealth:get_extraction_result (1x, possibly holding)"
+  ],
+  "must_not": [
+    "any call to extract_document, get_document_info, or confirm_document_split — none exist",
+    "advisorConfirmed: true without a preceding explicit, client-named confirmation",
+    "a second upload_extract_document call for the same file within this happy path",
+    "an estimate of when the reading will finish",
+    "the words report, scenario, estate flow, heritage map, risk analysis, insights"
+  ],
+  "gates": ["client confirmation", "6"]
+}

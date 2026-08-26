@@ -1,0 +1,35 @@
+{
+  "name": "Client Brief — Orientation Happy Path",
+  "skills": ["estate-client-brief"],
+  "fixture": "H-A",
+  "query": "I've got a call with the Bradys in ten minutes",
+  "expected_behavior": [
+    "Step 1: Calls Wealth:find_client with the name the advisor used — not Wealth:get_clients alone",
+    "Step 2: Finds two matching households (Brady/CA and Brady-Hollis/TX) and asks which, as a table",
+    "Step 3: The disambiguation table has exactly the columns Client, Family name, State, Spouse",
+    "Step 4: On the advisor naming California, calls Wealth:find_client again with that wid (resolution DIRECT) and Wealth:list_documents",
+    "Step 5: Presents the profile from the DIRECT result without a second profile call",
+    "Step 6: States the children indicator without naming any child",
+    "Step 7: Presents the document table with exactly the columns Document, Type, Upload date, Document date",
+    "Step 8: Names the Fidelity statement as non-estate rather than omitting it",
+    "Step 9: Offers exactly one next step, phrased as a question, naming a document"
+  ],
+  "success_criteria": [
+    "Client is named in the first sentence of the substantive answer",
+    "Zero dollar figures anywhere",
+    "Zero identifiers (wid, vaultId) in the answer text",
+    "The children/spouse fact is stated as an indicator, never as a name",
+    "Exactly one offer, phrased as a question",
+    "Tool sequence is Wealth:find_client (2x total: once to search, once DIRECT by wid) then Wealth:list_documents (1x)",
+    "Zero calls to get_client_info, get_contact_cards, get_estate_roles, get_estate_flow, or get_flowchart — none exist or none apply here (get_flowchart requires a vaultId, so it has no household-level use)"
+  ],
+  "must_not": [
+    "any email, phone number, street address, date of birth, or account identifier in the disambiguation table",
+    "any tool name, field path, or internal label in advisor-facing text",
+    "a child's or spouse's name produced from anywhere",
+    "a Status column on the document table",
+    "a table with a single row",
+    "proceeding with either Brady household without the advisor choosing"
+  ],
+  "gates": ["5", "8", "10"]
+}

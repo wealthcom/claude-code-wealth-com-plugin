@@ -1,0 +1,45 @@
+{
+  "name": "Deep Dive — Joint Revocable Trust, Happy Path",
+  "skills": ["estate-document-deep-dive"],
+  "fixture": "H-A",
+  "query": "What does the Brady trust say?",
+  "expected_behavior": [
+    "Step 1: Calls Wealth:find_client with the name the advisor used — not Wealth:get_clients alone",
+    "Step 2: Finds two matching households (Brady/CA and Brady-Hollis/TX) and asks which, as a table",
+    "Step 3: The disambiguation table has exactly the columns Client, Family name, State, Spouse",
+    "Step 4: On the advisor naming California, calls Wealth:list_documents for that household and reads each row's readingState before promising anything",
+    "Step 5: Recognises two trusts on file and asks which — in prose, because two items is below the table threshold",
+    "Step 6: Calls Wealth:get_executive_summary for the joint revocable trust (wid + vaultId)",
+    "Step 7: Presents the summary as prose, attributed to 'the Brady joint revocable trust' with its June 2019 execution date",
+    "Step 8: States the extracted-and-unconfirmed provenance in the prose itself",
+    "Step 9: Offers both the full-summary upgrade and a deeper estate-risks look, phrased as one question naming both",
+    "Step 10: On accepting the estate-risks offer, calls Wealth:get_estate_risks for the SAME document (same wid + vaultId) and reproduces the observation with its citation, framed as a point to discuss, not a finding",
+    "Step 11: Offers the disposition diagram next, phrased as a question",
+    "Step 12: On acceptance, calls Wealth:get_flowchart(wid, vaultId) scoped to the SAME joint revocable trust vaultId already in hand, and renders the diagram — since get_flowchart is per-document, this diagram may now be asserted as the trust's own",
+    "Step 13: Offers the next document by name (the family ILIT)"
+  ],
+  "success_criteria": [
+    "Client is named in the first sentence of the first substantive answer",
+    "Executive summary and estate-risks observation are both prose/reproduced blocks, not tables",
+    "Every document-derived statement carries an attribution an advisor would recognise and, where present, an as-of date",
+    "Provenance label appears in the answer text, not as a footnote or suffix",
+    "The estate-risks observation is framed as a point to discuss and explicitly not a legal review",
+    "Exactly one offer per answer, always phrased as a question, never a menu",
+    "The diagram is rendered, not described in prose and not tabulated",
+    "The diagram is attributed to the joint revocable trust specifically, since get_flowchart(wid, vaultId) is scoped to that document's vaultId",
+    "The final offer names the next document explicitly rather than saying 'another document'",
+    "Tool sequence is Wealth:find_client (1x) then Wealth:list_documents (1x) then Wealth:get_executive_summary (1x) then Wealth:get_estate_risks (1x) then Wealth:get_flowchart (1x, with the joint revocable trust's vaultId)",
+    "Zero calls to get_document_info, get_estate_roles, get_estate_flow, get_estate_plan_data, get_estate_baseline, get_balance_sheet, confirm_document_split, get_estate_snapshot, or get_lookback_report — none of these exist in the live registry (get_estate_snapshot was this skill's earlier, unscoped call, since superseded by get_flowchart)"
+  ],
+  "must_not": [
+    "any email, phone number, street address, date of birth, or account identifier in the disambiguation table",
+    "any tool name, field path, or internal label in advisor-facing text",
+    "a document identifier in place of a document name",
+    "presenting the extracted trust card as verified or confirmed",
+    "the words report, scenario, what-if, estate flow, or legal review in any offer",
+    "stating or implying the plan is sound because only one thing was observed",
+    "a table with a single row",
+    "proceeding with either Brady household without the advisor choosing"
+  ],
+  "gates": ["10", "5"]
+}

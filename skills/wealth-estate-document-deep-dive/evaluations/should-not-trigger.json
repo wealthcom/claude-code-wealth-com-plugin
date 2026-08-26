@@ -1,0 +1,35 @@
+{
+  "name": "Deep Dive — Should NOT Trigger",
+  "skills": ["estate-document-deep-dive"],
+  "fixture": "H-A",
+  "assertion": "For every query below, estate-document-deep-dive must NOT load. The named owner loads instead, or the request is declined.",
+  "should_not_trigger": [
+    { "query": "What's on file for the Bradys?", "owner": "estate-client-brief" },
+    { "query": "Who's involved in the Brady estate?", "owner": "estate-client-brief" },
+    { "query": "Who are the key people here?", "owner": "estate-client-brief" },
+    { "query": "Tell me about Robert Brady", "owner": "estate-client-brief" },
+    { "query": "Who's the successor trustee?", "owner": "estate-client-brief", "note": "Household-level role question. 'What does the 2019 trust say about the successor trustee' IS this skill — the boundary is whether a single document is named." },
+    { "query": "Who owns what in this household?", "owner": "balance-sheet-review" },
+    { "query": "Where are they concentrated?", "owner": "balance-sheet-review" },
+    { "query": "What are the beneficiary designations?", "owner": "balance-sheet-review", "note": "Designations live on assets, not in documents." },
+    { "query": "What's this household worth?", "owner": "balance-sheet-review" },
+    { "query": "Here's a PDF, add it to the Brady file", "owner": "estate-document-intake" },
+    { "query": "Upload this trust for me", "owner": "estate-document-intake" },
+    { "query": "Get me up to speed on the Bradys", "owner": "none — decline", "note": "All-documents sweep. Out of scope this release; must not be attempted document-by-document as a workaround." },
+    { "query": "Summarise all their estate documents", "owner": "none — decline" },
+    { "query": "What happens if Robert died today?", "owner": "none — decline" },
+    { "query": "Build me something for Thursday", "owner": "none — decline" },
+    { "query": "What if they moved to Florida?", "owner": "none — decline" },
+    { "query": "Run the exemption math on a 12 million dollar estate", "owner": "none — decline" },
+    { "query": "What's their effective tax rate?", "owner": "none — decline", "note": "Tax is a separate PRD. Estate skills must actively refuse." }
+  ],
+  "success_criteria": [
+    "Zero of the eighteen queries load estate-document-deep-dive with the wrong owner",
+    "Queries with a named owner route to that skill",
+    "Queries marked decline produce a refusal that does not name the missing capability",
+    "No decline attempts a partial workaround — no per-document loop in place of a sweep, no dollar figures in place of a flow",
+    "The near-boundary case (successor trustee) is decided correctly and consistently across repeated runs"
+  ],
+  "gates": ["9", "S-12"],
+  "notes": "'Anything I should know about the ILIT?' and 'What's missing from their plan?' belong to THIS skill rather than being anti-triggers, since get_estate_risks' own description uses these exact phrasings as trigger examples ('anything else I should know about this', 'what's missing') — both are covered in happy-path-jrt.json instead. The successor-trustee entry is the one to watch — if it flips, the fix is a sharper anti-trigger clause in the description, not a longer Critical block."
+}

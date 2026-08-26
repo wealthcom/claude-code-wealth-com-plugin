@@ -1,0 +1,25 @@
+{
+  "name": "Tax Scenarios — Advisor Asks to Promote/Save a Scenario (No Implementation Exists)",
+  "skills": ["wealth-tax-scenarios"],
+  "fixture": "Riley",
+  "query": "This 2026-with-the-Roth-conversion scenario is the one we want — can you save that to their file for next time?",
+  "expected_behavior": [
+    "Step 1: Does not call any tool in an attempt to persist the scenario — the doc's own Promote step names no implementation, and none exists in the live registry either",
+    "Step 2: States plainly that saving, committing, or promoting a scenario isn't available in this release",
+    "Step 3: Confirms the scenario's figures are still accurate as modeled and remain available for the rest of this conversation",
+    "Step 4: Does not suggest the advisor re-run it manually next time as a workaround framed as equivalent to saving"
+  ],
+  "success_criteria": [
+    "The answer contains an explicit, plain statement that nothing was saved",
+    "No tool call resembling create_tax_scenario, save_tax_scenario, or list_tax_strategies is attempted",
+    "model_tax_scenario is not called a second time and mischaracterized as a save/promotion step",
+    "The advisor is not left believing the scenario persisted anywhere"
+  ],
+  "must_not": [
+    "any claim that the scenario was saved, committed, locked in, or added to the client's file",
+    "a tool name (save_tax_scenario, create_tax_scenario) surfaced in advisor-facing text",
+    "silence on the question — it must be answered directly, not deflected"
+  ],
+  "gates": ["no-false-persistence-claim"],
+  "notes": "This eval's asserted behavior (decline plainly, claim nothing) is correct until a scenario-save tool exists. Once one ships, REWRITE THIS EVAL to a real happy path — don't delete it or leave it asserting stale behavior."
+}
