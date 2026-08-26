@@ -1,0 +1,29 @@
+{
+  "name": "Tax Scenarios — Rental Sale With Depreciation Recapture (Real Calculator Gap)",
+  "skills": ["wealth-tax-scenarios"],
+  "fixture": "Riley",
+  "query": "Same couple — they also sold a rental this spring. How does that change the year-end liability? [after gap questions] Net sale price was $500,000, adjusted basis $350,000. Depreciation taken over the ownership period was $50,000. Held about six years, no passive losses, rental income close to breakeven, property in Arizona, same state as residence.",
+  "expected_behavior": [
+    "Step 1: Asks for net sale price/basis or total gain, accumulated depreciation, holding period, suspended passive losses, this year's rental income, and state of property vs. residence — before calculating anything",
+    "Step 2: On receiving the raw figures, computes total gain ($150,000) and derives the §1250/LTCG split itself — unrecaptured §1250 gain is the lesser of depreciation taken ($50,000) or total gain, the remainder ($100,000) is ordinary long-term capital gain — rather than expecting the advisor to hand over a pre-split figure",
+    "Step 3: Recognizes that run_tax_calculation/model_tax_scenario have no enumerated input for unrecaptured section 1250 gain specifically",
+    "Step 4: Prices the $100,000 long-term capital gain portion normally through the calculator",
+    "Step 5: States plainly that the $50,000 recapture portion cannot be priced by this calculator and is not folded into the capital-gains figure",
+    "Step 6: Does not present a single combined liability figure for the full $150,000 sale as though it were complete"
+  ],
+  "success_criteria": [
+    "The gap list is asked before any calculation is attempted",
+    "The gain and its §1250/LTCG split are shown as derived (basis math + depreciation-taken math), not treated as given",
+    "The final answer explicitly separates the priced $100,000 LTCG portion from the unpriced $50,000 recapture portion",
+    "The recapture limitation is attributed to the calculator's own input list, not described as missing advisor information",
+    "No dollar figure is given for the recapture portion's tax impact"
+  ],
+  "must_not": [
+    "adding the $50,000 recapture amount into capital_gain_or_loss or any ordinary-gains input as if it were taxed the same way",
+    "a single 'total tax on the sale' figure that silently includes an estimate for the recapture portion",
+    "describing the recapture gap as the advisor's fault or an information gap rather than a calculator limitation",
+    "any tool name in advisor-facing text"
+  ],
+  "gates": ["fail-closed-unsupported-input", "no-fabricated-tax-figure"],
+  "notes": "Unrecaptured section 1250 gain is not supported by either calculator today and has no committed timeline to be added. This eval's asserted behavior (price what's supported, decline what isn't) is the current, durable requirement."
+}

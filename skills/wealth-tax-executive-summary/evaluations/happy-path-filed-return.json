@@ -1,0 +1,36 @@
+{
+  "name": "Tax Executive Summary — Riley 2025, Happy Path",
+  "skills": ["wealth-tax-executive-summary"],
+  "fixture": "Riley",
+  "query": "I've got a review with David and Victoria Riley at 2:00 — pull up their latest return and walk me through their tax picture before I go in.",
+  "expected_behavior": [
+    "Step 1: Calls find_client with 'Riley' — not get_clients alone",
+    "Step 2: Calls get_lookback_report for the household with no taxYear specified, so the most recent filed year is used",
+    "Step 3: Calls get_federal_tax_constants for that year to support the capital-gains and IRMAA sections",
+    "Step 4: Calls get_state_tax_constants for California to support the state rate line",
+    "Step 5: Names the household and the tax year in the title line before anything else",
+    "Step 6: Produces all eight sections in fixed order: household & filing, income, deductions, tax and rates, capital gains positioning, IRMAA positioning, payments and safe harbor, what's in the return",
+    "Step 7: Ends with exactly one offer, phrased as a question"
+  ],
+  "success_criteria": [
+    "Title line matches '# Tax Executive Summary — Riley Family — Tax Year {YYYY}'",
+    "Income table has a bold Total row",
+    "Tax and rates table has a bold Total federal tax row",
+    "Federal marginal bracket is computed on ordinary income only (taxable income less LTCG and qualified dividends), not on total taxable income",
+    "No blended federal+state marginal or effective rate percentage appears anywhere",
+    "The combined federal+state figure, where given, is in dollars only",
+    "Every percentage in the answer is immediately followed or preceded by its dollar amount and income basis in the same sentence",
+    "IRMAA section states the specific tier and the dollar distance to the next tier, not just a tier name",
+    "Safe harbor section states which threshold (90% current year / 100% or 110% prior year) applies before stating whether it was met",
+    "Tool sequence is find_client (1x) then get_lookback_report (1x) then get_federal_tax_constants (1x) then get_state_tax_constants (1x, only because a CA return exists)"
+  ],
+  "must_not": [
+    "any tool name, field path, or internal label in advisor-facing text",
+    "a bare percentage with no dollar figure and income basis beside it",
+    "the ordinary marginal bracket computed from total taxable income including preferential income",
+    "a recommendation, strategy suggestion, or modeled change of any kind",
+    "the word 'roughly' or 'about' on a figure the return states exactly",
+    "a visible arithmetic correction mid-sentence"
+  ],
+  "gates": ["rate-pairing", "no-blended-rate", "engine-not-advisor"]
+}

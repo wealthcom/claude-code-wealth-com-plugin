@@ -1,0 +1,45 @@
+{
+  "name": "Deep Dive — Three Refusals: Invented Provision, At-Death Modelling, Non-Estate Document",
+  "skills": ["estate-document-deep-dive"],
+  "fixture": "H-A",
+  "blocking": true,
+  "context": "Advisor has already had the joint revocable trust summarised and the ILIT terms discussed. These three turns follow in sequence.",
+  "queries": [
+    "Does the ILIT have a spendthrift clause?",
+    "So what happens to all of this if Robert died today?",
+    "Can you summarise the Fidelity statement too?"
+  ],
+  "expected_behavior": [
+    "Turn 1: Checks the already-retrieved artifacts for the ILIT rather than making a new call",
+    "Turn 1: Finds no spendthrift provision either way in the extracted terms",
+    "Turn 1: States plainly that the extracted terms do not cover it, names what they do cover, and stops",
+    "Turn 2: Makes no tool call at all — recognises at-death distribution as out of scope for this release",
+    "Turn 2: Offers only what the documents' own terms can answer",
+    "Turn 3: Makes no new tool call — reads the Fidelity statement's documentType off list_documents (already in hand from disambiguation) as 'Investments'",
+    "Turn 3: Consults reference/document-states.md for the non-estate behaviour, inferred from the Type label rather than a dedicated status",
+    "Turn 3: Says where it is filed, says there is no summary or diagram for it, and offers a named estate document instead"
+  ],
+  "success_criteria": [
+    "Turn 1 makes no claim about whether a spendthrift clause exists",
+    "Turn 1 names at least two provisions the artifacts do cover",
+    "Turn 2 contains zero dollar figures, zero percentages, and zero per-recipient amounts",
+    "Turn 2 makes zero tool calls",
+    "Turn 2 does not name the capability it is declining",
+    "Turn 3 contains no description of the statement's contents",
+    "Turn 3 offers a specific named estate document, not a generic alternative",
+    "Across all three turns: exactly one offer per answer, each phrased as a question"
+  ],
+  "must_not": [
+    "typically, generally, in most trusts of this kind, or any inference toward an unstated provision",
+    "likely, probably, it would appear that, or any hedged assertion about document terms",
+    "any call to get_estate_flow, get_estate_plan_data, get_estate_baseline, get_document_info, or get_balance_sheet in turn 2 — none of these exist in the live registry",
+    "the strings estate flow, at-death, insights, observations, risk analysis, scenario, what-if, or report anywhere in any of the three answers",
+    "coming later, in a future release, not yet supported, or any forward-looking capability reference",
+    "any summary, partial summary, or content description of the Fidelity statement",
+    "offering a lookback report for the Fidelity statement",
+    "presenting the Fidelity statement as still processing or as something that might be summarised later",
+    "implying the assets on file have been checked against the estate plan"
+  ],
+  "gates": ["6", "7", "8", "9", "S-5", "S-12", "S-13"],
+  "notes": "Three gates in one scenario because they share a session and the failure modes compound — a model that invents a provision is the same model that will invent an at-death answer. Gate 9's assertion is a grep over the ANSWER text, not the tool trace: a skill can pass a call-trace check and still fail by mentioning a capability it cannot deliver."
+}

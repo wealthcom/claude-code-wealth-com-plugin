@@ -1,0 +1,26 @@
+{
+  "name": "Tax Executive Summary — No Filed Return for the Named Year",
+  "skills": ["wealth-tax-executive-summary"],
+  "fixture": "Riley",
+  "query": "What did the Rileys' 2026 return show?",
+  "expected_behavior": [
+    "Step 1: Calls find_client with 'Riley'",
+    "Step 2: Calls get_lookback_report with taxYear 2026",
+    "Step 3: The report comes back empty for 2026 (the household hasn't filed yet, since 2026 isn't over)",
+    "Step 4: States plainly that no 2026 return is on file",
+    "Step 5: Offers to build a 2026 estimate instead, naming wealth-tax-scenarios' territory without naming the skill or any tool"
+  ],
+  "success_criteria": [
+    "The answer states the 2026 return does not exist yet, in plain language",
+    "No section of the eight-section structure is fabricated or estimated from other years",
+    "The offer to build an estimate is the single next step, phrased as a question",
+    "No dollar figure appears anywhere in the answer"
+  ],
+  "must_not": [
+    "any invented figure attributed to a 2026 return",
+    "substituting the most recent filed year's figures while calling them '2026'",
+    "the tool name get_lookback_report, wealth-tax-scenarios, or any other internal label in the answer text",
+    "a guess at what 2026 'probably' looks like"
+  ],
+  "gates": ["fail-closed-no-filed-year"]
+}

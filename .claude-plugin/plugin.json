@@ -1,0 +1,10 @@
+{
+  "name": "wealth-com-claude-code-plugin",
+  "displayName": "Wealth.com Plugin",
+  "version": "0.4.0",
+  "description": "Estate planning, balance sheet, and tax skills for financial advisors, backed by Wealth.com's live client data. Orient on a household, go deep on one estate document, review what they own, read a filed tax return, or model one that isn't filed yet — all through the wealthcom-mcp connector.",
+  "author": {
+    "name": "Wealth.com"
+  },
+  "homepage": "https://www.wealth.com"
+}

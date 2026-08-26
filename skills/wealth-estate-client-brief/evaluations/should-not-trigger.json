@@ -1,0 +1,28 @@
+{
+  "name": "Client Brief — Should NOT Trigger",
+  "skills": ["estate-client-brief"],
+  "fixture": "H-A",
+  "assertion": "For every query below, estate-client-brief must NOT load, or must load only to decline and hand off. The named owner loads instead where one is given.",
+  "should_not_trigger": [
+    { "query": "What does the Brady trust say?", "owner": "estate-document-deep-dive" },
+    { "query": "Show me the disposition diagram for the joint revocable trust", "owner": "estate-document-deep-dive" },
+    { "query": "Any risks with the ILIT?", "owner": "estate-document-deep-dive" },
+    { "query": "What do the Bradys own?", "owner": "balance-sheet-review" },
+    { "query": "Where are they concentrated?", "owner": "balance-sheet-review" },
+    { "query": "What are the beneficiary designations on the accounts?", "owner": "balance-sheet-review", "note": "Account-level beneficiary designations live on the balance sheet, not the client record — distinct from the family-members-by-name gap this skill declines." },
+    { "query": "Here's a PDF, add it to the Brady file", "owner": "estate-document-intake" },
+    { "query": "Upload this trust for me", "owner": "estate-document-intake" },
+    { "query": "What's their effective tax rate?", "owner": "none — decline", "note": "Tax is a separate skill set. Estate skills must actively refuse." },
+    { "query": "What happens if Robert died today?", "owner": "none — decline" },
+    { "query": "Summarise all their estate documents", "owner": "none — decline", "note": "All-documents sweep — no skill in this set does this; wealth-estate-plan-overview was retired precisely because it can't be done honestly." },
+    { "query": "Build me a report on this household", "owner": "none — decline" }
+  ],
+  "success_criteria": [
+    "Zero of the twelve queries are answered as if this skill owns them",
+    "Queries with a named owner route to that skill",
+    "Queries marked decline produce a refusal that does not name the missing capability",
+    "The two near-boundary cases (beneficiary designations, tax rate) are decided correctly and consistently across repeated runs"
+  ],
+  "gates": ["9", "S-12"],
+  "notes": "This set reflects the skill's current scope — household-wide roles and named family members are declined here, not answered — so this file is built against that scope."
+}

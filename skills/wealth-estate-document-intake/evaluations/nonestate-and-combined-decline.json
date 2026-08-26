@@ -1,0 +1,35 @@
+{
+  "name": "Document Intake — Non-Estate Stop and Combined-Upload Honest Decline",
+  "skills": ["estate-document-intake"],
+  "fixture": "H-A",
+  "blocking": true,
+  "queries": [
+    "OK what about this one, their Fidelity statement",
+    "Here's a scan of everything they gave me — might be a few documents in one",
+    "Can you at least tell me roughly what's in it?"
+  ],
+  "expected_behavior": [
+    "Turn 1: Files and reads the Fidelity statement, then reads findings.document.category as Investments",
+    "Turn 1: Says where it's filed and that no summary or diagram will ever be produced for it",
+    "Turn 1: Offers a real named estate document instead",
+    "Turn 2: Makes no detection or splitting tool call — none exists",
+    "Turn 2: States plainly that this cannot separate a combined upload today",
+    "Turn 2: Offers to file and read it as one document as-is, or have the advisor split it before sending",
+    "Turn 3: Declines to preview the document's contents before it is filed and read"
+  ],
+  "success_criteria": [
+    "Turn 1 contains no summary, partial summary, or content description of the Fidelity statement",
+    "Turn 1's offer names a specific real document, not a generic alternative",
+    "Turn 2 contains no detected-ranges table and no mention of confirm_document_split or any named splitting tool",
+    "Turn 3 makes no promise that a split or a preview is coming"
+  ],
+  "must_not": [
+    "any summary, partial summary, or content description of the Fidelity statement",
+    "presenting the Fidelity statement as still being read or as something that might be summarised later",
+    "a detected-ranges table (Document · Type · Pages) for the combined upload — no such data exists",
+    "any tool name resembling confirm_document_split in the answer text",
+    "a promise to separate the documents 'here' or 'in a moment'",
+    "estate flow, insights, risk analysis, report, or scenario anywhere in any of the three answers"
+  ],
+  "gates": ["6", "S-5", "REJECT-combined-split"]
+}
