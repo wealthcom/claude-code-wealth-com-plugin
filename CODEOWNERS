@@ -1,0 +1,11 @@
+# ------------------------------------------------------------------------------
+# Seeded once at repo creation by Terraform (wealth-gh-management), then left
+# alone — edit this file freely, Terraform will not revert it.
+#
+# Owners come from `owners:` in config/repositories.yaml. Repos with no owner
+# fall back to the org-wide default. Only teams with WRITE access or higher are
+# valid code owners; GitHub silently ignores any others, which turns the
+# "require code owner review" branch protection rule into a no-op. Terraform
+# filters this list to teams that actually hold write+ on this repo.
+# ------------------------------------------------------------------------------
+* @wealthcom/platform
