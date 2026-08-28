@@ -6,7 +6,10 @@
   "plugins": [
     {
       "name": "wealth-com-claude-code-plugin",
-      "source": "./",
+      "source": {
+        "source": "github",
+        "repo": "wealthcom/claude-code-wealth-com-plugin"
+      },
       "description": "Estate planning, balance sheet, and tax skills for financial advisors, backed by Wealth.com's live client data."
     }
   ]
