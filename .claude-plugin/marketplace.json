@@ -3,6 +3,7 @@
   "owner": {
     "name": "Wealth.com"
   },
+  "description": "Wealth.com's official plugin for financial advisors — estate planning, balance sheet, and tax Skills backed by live client data through the wealthcom-mcp connector.",
   "plugins": [
     {
       "name": "wealth-com-claude-code-plugin",
