@@ -1,0 +1,34 @@
+{
+  "name": "Balance Sheet Review — Brady Household, Happy Path (Unmatched Ownership)",
+  "skills": ["wealth-balance-sheet-review"],
+  "fixture": "Brady",
+  "query": "What do the Bradys own?",
+  "expected_behavior": [
+    "Step 1: Calls find_client with 'Brady' to resolve the household before any other tool",
+    "Step 2: Calls get_balance_sheet with the resolved clientId",
+    "Step 3: Establishes the ownership state — recognizes the owner strings are free text ('R & S BRADY JT', 'ROBERT BRADY') not matched to people and trusts on the record",
+    "Step 4: Names the household, then presents categories and holdings with values and an as-of",
+    "Step 5: States, in the same breath as the figures, that ownership is recorded as text on the accounts and has not been matched to the people and trusts on file",
+    "Step 6: Describes the unlabelled holding as having incomplete labels — never printing its identifier",
+    "Step 7: Ends with exactly one offer, phrased as a question (the concentration, or the designations)"
+  ],
+  "success_criteria": [
+    "find_client is called before get_balance_sheet",
+    "The ownership caveat appears in the same answer as the figures, not deferred or omitted",
+    "The holding with incomplete labels is described as such, with no identifier shown",
+    "No headline estate total is produced (inclusion in the taxable estate is not confirmed)",
+    "No comparison of the assets to the estate plan appears",
+    "No at-death distribution, scenario, report, or what-if is mentioned",
+    "Exactly one next-step offer, phrased as a question"
+  ],
+  "must_not": [
+    "any asset identifier in the answer text",
+    "any clientId, userId, or contactCardId in the answer text",
+    "a headline estate total on unconfirmed inclusion",
+    "any statement that ownership matches, or lines up with, the trust",
+    "an offer to add, correct, or reclassify a holding",
+    "the words report, scenario, what-if, estate flow, heritage map, risk analysis, or insights",
+    "more than one question in the turn"
+  ],
+  "gates": ["gate 10", "gate 5 / S-15", "gate 8", "gate: no false reconciliation", "gate 9 / S-12", "3.3-G"]
+}

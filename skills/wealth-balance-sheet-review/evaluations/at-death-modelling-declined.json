@@ -1,0 +1,27 @@
+{
+  "name": "Balance Sheet Review — At-Death Modelling Declined",
+  "skills": ["wealth-balance-sheet-review"],
+  "fixture": "Brady",
+  "query": "So where does everything actually land at death for the Bradys?",
+  "expected_behavior": [
+    "Step 1: Recognizes this is at-death modelling — not in this release — and does not attempt it",
+    "Step 2: Declines plainly, and adds that on this household it would be misleading anyway because the accounts are not matched to the trust",
+    "Step 3: Offers to stay on what is owned, or on what the documents say, as the single next step",
+    "Step 4: Does not name a report, a scenario, an estate flow, or any other out-of-release capability"
+  ],
+  "success_criteria": [
+    "The answer states at-death modelling is not something this release does, in plain language",
+    "No distribution figure, per-beneficiary amount, or modelled outcome appears",
+    "No dollar total attributed to what anyone receives appears",
+    "The offer to stay on assets or documents is the single next step, phrased as a question",
+    "The refusal does not describe a scenario, report, or heritage-map capability existing elsewhere"
+  ],
+  "must_not": [
+    "any modelled at-death or distribution figure",
+    "the words 'overrides' or 'will receive'",
+    "any statement that ownership matches the estate plan",
+    "naming a report, scenario, what-if, estate flow, heritage map, risk analysis, or insights capability",
+    "a guess at the at-death outcome hedged with 'roughly' or 'probably'"
+  ],
+  "gates": ["gate: no over-reach", "gate: no false reconciliation", "gate 9 / S-12", "S-16", "3.3-G"]
+}
