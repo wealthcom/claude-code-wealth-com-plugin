@@ -5,6 +5,19 @@ All notable changes to this plugin are documented here. The format is based on
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html). The top version here is kept in lockstep
 with the `version` field in `.claude-plugin/plugin.json`, and each release is tagged `vX.Y.Z`.
 
+## [Unreleased]
+
+### Changed
+
+- Revised the two tax Skills:
+  - **`wealth-tax-scenarios`** — rewrote `SKILL.md` around an explicit path-selection flow (assumptions
+    vs. rolling a filed return forward), a tiered derivation (landmarks → offered line-by-line
+    worksheet), and a hardened constraint list; replaced the supporting docs with
+    `references/knowledge-base.md` (tool contracts).
+  - **`wealth-tax-executive-summary`** — rewrote `SKILL.md` and replaced the supporting docs with
+    `references/knowledge-base.md` (federal/state tax-constant contracts and graceful degradation) and
+    `references/example-riley.md` (the reference output to match for shape and tone).
+
 ## [0.4.0] - 2026-09-02
 
 ### Added
