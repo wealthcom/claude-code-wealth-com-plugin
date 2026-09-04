@@ -7,7 +7,7 @@ description: What a household owns, who owns it as recorded, where it's concentr
 
 What the household owns, who owns it as recorded, where the concentration sits, and what the beneficiary designations say.
 
-Its one tool, `get_balance_sheet`, reads real account-level data from Wealth.com's asset platform.
+Its core tool, `get_balance_sheet`, reads real account-level data from Wealth.com's asset platform; `find_client` resolves the household first, and `get_estate_risks` supplies the plan terms only when a designation has to be checked against the document.
 
 ## Critical
 
@@ -74,7 +74,7 @@ Only when the advisor asks, or when a contradiction is plainly visible.
 
 ```
 - State the designation as recorded
-- State what the document says, from get_estate_roles
+- State what the document says, from get_estate_risks
 - Say they APPEAR to differ, and that it is worth confirming with the
   custodian and the drafting attorney
 - Stop. No consequence, no dollar figure, no recommendation

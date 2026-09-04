@@ -1,0 +1,23 @@
+{
+  "name": "Balance Sheet Review — Should NOT Trigger",
+  "skills": ["wealth-balance-sheet-review"],
+  "fixture": "Brady",
+  "queries_that_should_not_trigger_this_skill": [
+    { "query": "Who's on the Bradys' record — the people and the trusts?", "belongs_to": "wealth-estate-client-brief" },
+    { "query": "What does the Bradys' revocable trust say about the residue?", "belongs_to": "wealth-estate-document-deep-dive" },
+    { "query": "Add the Bradys' new deed to their file", "belongs_to": "wealth-estate-document-intake" },
+    { "query": "Where does everything actually land at death for the Bradys?", "belongs_to": "decline — at-death modelling is not in this release" },
+    { "query": "Reconcile the Bradys' account ownership against their estate plan", "belongs_to": "decline — reconciling ownership against the plan is not in this release" },
+    { "query": "Model what the Bradys owe if they sell the business", "belongs_to": "wealth-tax-scenarios" }
+  ],
+  "success_criteria": [
+    "Zero calls to get_balance_sheet for any of these queries",
+    "Each query is either answered by the correct skill's territory or, if this skill briefly loads, is handed off explicitly in the first sentence with no asset data pulled",
+    "The at-death and reconciliation queries are declined as out of this release, not routed to a named skill that would perform them"
+  ],
+  "must_not": [
+    "producing a balance-sheet answer in response to any of these queries",
+    "silently answering a document, people, or intake question with asset data",
+    "offering at-death modelling, a scenario, or an estate-plan reconciliation for the declined queries"
+  ]
+}
