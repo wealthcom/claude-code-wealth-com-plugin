@@ -2,7 +2,7 @@
 
 This repository provides an official Claude Code and Cowork plugin that bundles:
 
-- **Six Skills** for financial advisors working estate planning, balance sheet, and tax cases
+- **Seven Skills** for financial advisors working estate planning, balance sheet, and tax cases
 - The **Wealth.com MCP Server**, which gives Claude secure access to a household's live client data — estate documents, balance sheet, and filed tax returns
 
 This plugin allows Claude Code and Cowork users to install everything — Skills + MCP server — with **one click**.
@@ -13,7 +13,7 @@ This plugin allows Claude Code and Cowork users to install everything — Skills
 
 ### ✅ Fully packaged estate, balance sheet, and tax Skills
 
-Six Skills for advisors working a household's file:
+Seven Skills for advisors working a household's file:
 
 **Estate**
 
@@ -35,6 +35,7 @@ Six Skills for advisors working a household's file:
 |-------|-------------|
 | `wealth-tax-executive-summary` | A descriptive overview of a client's filed tax return: household and filing, income, deductions, tax and rates, capital-gains and IRMAA positioning, payments and safe harbor, and what's in the return |
 | `wealth-tax-scenarios` | Build and model a tax position for a year that hasn't been filed, either from the advisor's own assumptions or by rolling a filed return forward with changes |
+| `wealth-tax-insights` | A structured review pass over a filed return that surfaces the gaps and planning opportunities worth a client conversation: anomalies, expected-but-absent deductions and elections, thresholds the household sits near, composition signals, and life-event inferences — each with its mechanism |
 
 Each skill ships its own `reference/` (domain rules and edge cases), `examples/` (an end-to-end transcript), and `evaluations/` (triggering, functional, and should-not-trigger test cases).
 
