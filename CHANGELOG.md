@@ -7,6 +7,18 @@ with the `version` field in `.claude-plugin/plugin.json`, and each release is ta
 
 ## [Unreleased]
 
+### Added
+
+- **`wealth-tax-insights`** — a new tax Skill that runs a structured review pass over a filed
+  return and surfaces the gaps and planning opportunities worth a client conversation: anomalies
+  where the return doesn't tie to itself, deductions and elections that are expected but absent,
+  thresholds the household sits near, composition signals, and life-event inferences — each item
+  carrying the mechanism behind it so the advisor can confirm it against the return. Ships
+  `SKILL.md`, `references/knowledge-base.md` (detection modes, suppression rules, and the
+  federal/state constants-tool contracts), and `references/example-riley.md` (the reference output
+  to match for shape and tone). Descriptive overviews stay in `wealth-tax-executive-summary` and
+  forward-looking modeling in `wealth-tax-scenarios`.
+
 ### Changed
 
 - Revised the two tax Skills:
