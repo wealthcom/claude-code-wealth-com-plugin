@@ -46,8 +46,7 @@ employees who would have to be covered?
 business.
 
 **Possible next analysis.** Compare solo-401(k), SEP, and cash-balance capacity for each spouse once
-the employee and cash-flow facts are confirmed — a scenario-modeling handoff, since the contribution
-limits are not returned by `get_federal_tax_constants` today.
+the employee and cash-flow facts are confirmed — a scenario-modeling handoff.
 
 ### Entity structure against the self-employment tax
 
@@ -128,7 +127,7 @@ measures its own modification of income. Net investment income tax is assessed a
 of $445,743 stands $195,743 above the $250,000 threshold, so essentially all net investment income —
 interest, dividends, the capital gain, and the passive rental — is exposed at 3.8%. IRMAA runs on a
 separate clock: Devin turns 65 in November 2027, and the two-year lookback means this 2025 return
-sets his 2027 Part B and D premium off IRMAA MAGI (AGI plus tax-exempt interest) of $445,743, a high
+sets his 2027 Medicare IRMAA surcharge off IRMAA MAGI (AGI plus tax-exempt interest) of $445,743, a high
 tier. 2026 income will set 2028, and Priya's first premium year — she turns 65 in 2029 — is priced on
 2027 income.
 
@@ -161,9 +160,3 @@ substantial unused room, but the exact gap depends on self-only versus family co
 **Are the federal estimates intentionally running to a refund?** $128,000 of estimates with $0
 withholding produced an $11,187 federal refund and no penalty — confirm whether applying the
 overpayment forward is preferred.
-
-## Where more is needed
-
-**HSA capacity** looks applicable, but the exact unused amount can't be stated here: the contribution
-limit is not carried by `get_federal_tax_constants`, and the figure turns on confirming self-only
-versus family HDHP coverage and each spouse's catch-up. The coverage type would settle it.

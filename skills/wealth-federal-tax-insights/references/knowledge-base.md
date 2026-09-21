@@ -117,8 +117,7 @@ CRM records the skill lacks, it is a **question in Questions to validate**, not 
 - **ACA premium subsidy alert:** coarse trigger — no filer 65+, and no wage income. A pre-Medicare
   household on portfolio/retirement income whose marketplace credit is driven by a manageable MAGI.
   Ship as a **question** ("no wages, both filers under 65 — is anyone covered through the
-  marketplace?"), not a calculation; quantifying it needs `PREMIUM_TAX_CREDIT`, not in the tool
-  yet. Suppress if a Form 8962 or 1095-A is already present.
+  marketplace?"), not a calculation; quantifying it needs `PREMIUM_TAX_CREDIT`. Suppress if a Form 8962 or 1095-A is already present.
 
 **Suppression partner — absent is not always missing.** Establish the precondition before firing:
 
@@ -353,13 +352,21 @@ get_federal_tax_constants({ taxYear, filingStatus, sections? })
 | `CAPITAL_GAINS` | 0% and 15% ceilings for long-term gains and qualified dividends |
 | `SURTAXES` | Net investment income tax and Additional Medicare tax — rates and thresholds |
 | `SAFE_HARBOR` | Current- and prior-year percentages, the high-income AGI trigger, de minimis balance |
-| `IRMAA` | Medicare Part B and Part D tiers for the premium year this return drives |
+| `IRMAA` | Medicare IRMAA surcharge tiers — one combined monthly amount per person — for the premium year this return drives |
 | `SENIOR_DEDUCTION` | The enhanced deduction for filers age 65 or older (2025–2028) |
 | `ALTERNATIVE_MINIMUM_TAX` | Exemption, phase-out threshold and rate, and the 28% rate threshold |
 | `QUALIFIED_BUSINESS_INCOME` | Section 199A threshold, phase-in range, and the 2026 minimum deduction |
-| `EARNED_INCOME_CREDIT` | Maximum credit, earned income amount, and phase-out band by child count |
 | `CHILD_TAX_CREDIT` | Maximum per child, refundable portion, other-dependent credit, phase-out |
 | `GIFT_AND_ESTATE` | Annual gift exclusion, non-citizen spouse exclusion, lifetime basic exclusion |
+| `RETIREMENT_LIMITS` | Elective-deferral and catch-up limits; SEP, SIMPLE, solo-401(k), and IRA contribution limits and deductibility phase-outs |
+| `HSA_LIMITS` | Annual HSA contribution limits (self-only vs. family) and the age-55 catch-up |
+| `QCD` | Qualified charitable distribution annual limit (age-70½ eligible) |
+| `SOCIAL_SECURITY_TAXABILITY` | Provisional-income thresholds that set the taxable share of Social Security |
+| `CHARITABLE` | AGI ceilings by gift type (cash vs. appreciated property) and the carryforward rule |
+| `PREMIUM_TAX_CREDIT` | ACA applicable-percentage table and the federal-poverty-line bands |
+| `KIDDIE_TAX` | Unearned-income thresholds and the rate on a dependent child's unearned income |
+| `SECTION_121_EXCLUSION` | Primary-residence capital-gain exclusion by filing status |
+| `DEPRECIATION` | Section 179 expensing, bonus-depreciation percentage, and luxury-auto caps |
 
 Across the modes, insights leans on `ORDINARY_BRACKETS`, `CAPITAL_GAINS`, `SURTAXES`, `SAFE_HARBOR`,
 and `IRMAA` for the Mode 3 threshold positions; `STANDARD_DEDUCTION` and `SALT_CAP` for the itemized
