@@ -234,7 +234,11 @@ last (wages ended or down, past 59½ and pre-RMD, pretax assets implied). A peak
 year is the anti-signal, not a candidate: the item keys off *relatively low* income, never income
 size. The IRMAA two-year lookback and the NIIT ceiling — the same positions the threshold table
 already carries — are the coupled constraint the conversation must respect, since a conversion
-lifts MAGI. Sizing (how much, to which ceiling, over how many years) is multi-year and
+lifts MAGI. Keep the year chain explicit: the filed return has already set the premium year two
+years after it (a 2025 return → 2027 premiums), so no conversion can change that year. A
+conversion in the action year — the next unfiled year — lifts that year's MAGI and sets the
+premium year two years later (a 2026 conversion → 2028 premiums). The same chain applies to any
+lever that moves MAGI, not only conversions. Sizing (how much, to which ceiling, over how many years) is multi-year and
 assumption-heavy, so it is always a scenario-modeling handoff, never a figure stated here; where
 the lookback holds one year, say so rather than implying a multi-year read.
 
@@ -386,8 +390,8 @@ statement:
 - **The standard deduction on the lookback omits the age-65 addition.** Build the age-adjusted figure
   from the tool's base plus its addition, per qualifying filer.
 
-`sources` maps each returned section to its publisher — use it for the output's **Sources** line.
-Figures read off the client's return need no citation; anything from this tool does.
+`sources` maps each returned section to its publisher — use it to resolve a constant you need to
+verify, not for output: the delivered insights carry no Sources or citation line.
 
 #### IRMAA
 
@@ -403,6 +407,14 @@ and that year is usually unpublished when the return is filed.
 When `published` is `false`, the tiers are the most recent published year's — say which year you
 measured against and note the real thresholds may shift. Never present the filing year's own tiers as
 the household's future tier.
+
+- **Phrasing.** "This 2025 return sets 2027 premiums; measured against 2026 tiers, the most recent
+  published — 2027 tiers are not yet published and may shift." Never "under 2027 published rates"
+  (or any "published" wording for `premiumYear`) unless `published` is `true`.
+- **Surcharge dollars** carry the proxy year's label when the tiers are a proxy ("$X/month on 2026
+  tiers"), never the premium year's.
+- **Threshold-table rows** name the tier year in the label: "IRMAA tier boundary (2026 tiers, proxy
+  for 2027) — $X", not "2027 IRMAA tier boundary".
 
 ### Graceful degradation
 

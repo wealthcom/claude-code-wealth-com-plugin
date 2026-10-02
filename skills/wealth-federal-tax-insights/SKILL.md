@@ -158,6 +158,11 @@ Only what a check requires; the server computes most figures — take them as-is
   included — never from income size. Check state `structure` before calling anything marginal.
 - **Each MAGI separately** — IRMAA MAGI (AGI + tax-exempt interest) ≠ NIIT MAGI. Name the
   provision beside every MAGI.
+- **IRMAA is a two-year lookback.** Always state which premium year this return sets, and which
+  year's tiers you measured against — name the proxy year when the real one isn't published yet.
+  Call a premium year's tiers "published" only when the constants tool returns `published: true`;
+  otherwise any tier or surcharge figure carries the proxy year's label ("measured against 2026
+  tiers; 2027 tiers not yet published").
 - **Ordinary taxable income** = taxable income less preferential income; bracket distances measure
   on that remainder.
 - **Distance to a threshold** is a positive number with its direction in words, never signed.
@@ -182,7 +187,8 @@ After detection, before writing. Every item passes four gates; drop whatever fai
    points at a line read and empty.
 2. **Eligibility gate** — do all preconditions hold for *this* household (ages, enrollment,
    coverage, entity type, filing status)?
-3. **Currency gate** — is every rule current for this tax year, from the constants tools?
+3. **Currency gate** — is every rule current for this tax year, from the constants tools? An IRMAA
+   tier or surcharge passes only when it names the year its tiers belong to.
 4. **Consistency gate** — does the item agree with the return and with every other item? When the
    item *is* an inconsistency resting on a lone checkbox or boolean flag that the numeric lines
    contradict, the flag is the unreliable party — drop it as a probable extraction artifact rather
@@ -221,6 +227,15 @@ insights do not cite a publisher; the advisor reads figures, not footnotes.
 phase-outs). Lead Threshold & timing signals with it, grouped by cause not figure — each provision
 modifies AGI its own way, so the lead never states a single household MAGI.
 
+**Year frame.** The filed return is the evidence year; it is closed. Planning opportunities always
+start in the next unfiled year (a 2025 return → 2026 forward) — never frame a lever as changing the
+filed year, or a premium year the filed return has already set. Each opportunity names the year the
+action would happen and the year each consequence lands: a 2026 Roth conversion is measured against
+2026 brackets and the 2026 199A threshold, and its MAGI sets the 2028 IRMAA premium year. When an
+item cites the filed year's thresholds as the reference point, say they are that year's figures;
+sizing against the action year's figures is the scenario-modeling handoff. Never write an unanchored
+"this year" or "next year" — name the year.
+
 **Planning opportunity format** — four parts, kept tight:
 
 - **Why this surfaced** — the client-specific facts that activated it, provenance stated naturally,
@@ -234,12 +249,14 @@ modifies AGI its own way, so the lead never states a single household MAGI.
 - **Useful documents** — records that would confirm the facts or complete the analysis. Omit the
   line when none is needed.
 - **Possible next analysis** — the scenario or comparison that could be modeled once inputs are
-  confirmed. No invented outcome; omit when there is nothing to model.
+  confirmed, naming the action year it would model. No invented outcome; omit when there is nothing
+  to model.
 
 **Presentation.** State position, never direction. Questions to validate are phrased
 as questions. Anomalies name the line ("the 1099-R reports $48,000 gross with no taxable amount and
 no rollover notation"). Absolute figures only; pair every rate with its dollars and income basis;
-name the provision beside any MAGI; one final figure per statement. Attribute to the document ("the
+name the provision beside any MAGI; name the year beside any year-dependent figure or effect; one
+final figure per statement. Attribute to the document ("the
 federal return shows"), never to a tool, field, or screen. Never carry a figure from the example —
 it belongs to a real household and to that household alone. 
 

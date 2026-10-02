@@ -86,15 +86,17 @@ drops taxable income below $394,600.
 
 **Why this surfaced.** Both spouses are pre-RMD and pre-Medicare, and the $14,000 IRA distribution
 (Line 4a/4b) confirms pretax IRA balances exist (return-confirmed). The 24% bracket shows $96,806 of
-room on the return's bracket table before the 32% bracket. The constraint is that the top of the 24%
-bracket ($394,600) is the same line as the 199A threshold, and any conversion lifts Devin's IRMAA
-MAGI for 2027 — so the usable room is narrower than the bracket alone suggests.
+room on the 2025 bracket table before the 32% bracket. On the 2025 figures, the top of the 24%
+bracket ($394,600) is the same line as the 199A threshold, so a 2026 conversion would likely run into
+both at once. A 2026 conversion also lifts 2026 MAGI, which sets Devin's 2028 IRMAA premiums; his
+2027 premium year is already set by this 2025 return. The usable room is narrower than the bracket
+alone suggests.
 
 **Conversation to have.** Total pretax IRA and 401(k) balances and any existing basis; tolerance for
-lifting this year's MAGI given the IRMAA and 199A interactions.
+lifting 2026 MAGI given the IRMAA and 199A interactions.
 
-**Possible next analysis.** Model conversion amounts against the $394,600 line and Devin's 2027 IRMAA
-tier.
+**Possible next analysis.** Model 2026 conversion amounts against the 2026 24% bracket top and 199A
+threshold, and Devin's 2028 IRMAA tier.
 
 ### HSA funded far below capacity, with a closing window
 
@@ -127,8 +129,9 @@ measures its own modification of income. Net investment income tax is assessed a
 of $445,743 stands $195,743 above the $250,000 threshold, so essentially all net investment income —
 interest, dividends, the capital gain, and the passive rental — is exposed at 3.8%. IRMAA runs on a
 separate clock: Devin turns 65 in November 2027, and the two-year lookback means this 2025 return
-sets his 2027 Medicare IRMAA surcharge off IRMAA MAGI (AGI plus tax-exempt interest) of $445,743, a high
-tier. 2026 income will set 2028, and Priya's first premium year — she turns 65 in 2029 — is priced on
+sets his 2027 Medicare IRMAA surcharge off IRMAA MAGI (AGI plus tax-exempt interest) of $445,743.
+Measured against 2026 tiers, the most recent published, that places him in the second-highest tier;
+2027 tiers are not yet published and may shift. 2026 income will set 2028, and Priya's first premium year — she turns 65 in 2029 — is priced on
 2027 income.
 
 | Threshold | This household | Distance |
@@ -141,8 +144,8 @@ tier. 2026 income will set 2028, and Priya's first premium year — she turns 65
 
 ### The $394,600–$500,000 band is crowded
 
-The 199A cliff and the 24%/32% bracket break both fall at $394,600, and the SALT-cap phase-out and the
-top IRMAA tier both begin at $500,000. Additional ordinary income in this band is unusually expensive
+On the 2025 figures, the 199A cliff and the 24%/32% bracket break both fall at $394,600, and the
+SALT-cap phase-out begins at $500,000. Additional ordinary income in this band is unusually expensive
 per dollar — it erodes the QBI deduction on the way up and, past $500,000, phases down the SALT
 deduction. It is the constraint behind the Roth-conversion sizing above.
 
