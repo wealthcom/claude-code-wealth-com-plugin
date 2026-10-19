@@ -384,6 +384,9 @@ statement:
 
 - **SALT is not a $10,000 cap for a high earner.** The cap is the larger figure; the phase-out
   reduces it and floors it at $10,000. Say the household is held to the floor by the phase-out.
+  The SALT threshold is `phaseout_threshold`, where the phase-down begins — the figure a
+  threshold-table SALT row cites, even for a household already past `floor_reached_at_magi`. That
+  is only where the cap bottoms out at the floor; never list it as a threshold.
 - **The bracket bands are ordinary taxable income**, with preferential income stacked above ordinary. Measure
   the marginal ordinary bracket on taxable income *less* preferential income, and quote the
   thresholds exactly as returned — the ladder is only as good as the row the marker sits on.
