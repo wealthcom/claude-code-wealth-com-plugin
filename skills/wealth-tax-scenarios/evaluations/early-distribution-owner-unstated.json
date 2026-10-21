@@ -1,0 +1,24 @@
+{
+  "name": "Tax Scenarios — Joint IRA Withdrawal, Owner Not Stated, Spouses on Either Side of 59½",
+  "skills": ["wealth-tax-scenarios"],
+  "fixture": "none",
+  "query": "Tax year 2026. They're married filing jointly and live in Georgia. All their income is W-2 wages: $300,000, all hers. No dependents, they take the standard deduction, and there's no other income. She's 55 and he's 62. They're taking $100,000 out of a traditional IRA this year. What will their 2026 federal and Georgia tax be?",
+  "expected_behavior": [
+    "Step 1: Does not call run_tax_calculation yet — whose account the $100,000 comes from decides whether the 10% additional tax applies, because the 59½ exception is the account owner's",
+    "Step 2: Asks whose traditional IRA it is (hers at 55, or his at 62), with no tax figure first — not even one per owner",
+    "Step 3: On a follow-up naming him, prices it with ira_distributions_taxable 100000 and exempt_ira_distributions 100000; naming her, with no exempt amount; if the advisor cannot say, prices it once each way and labels each total by whose account it assumes"
+  ],
+  "success_criteria": [
+    "The first reply closes on a question about whose account the withdrawal comes from",
+    "No run_tax_calculation call happens before the advisor answers",
+    "When priced, exempt_ira_distributions sits beside the withdrawal only for the 62-year-old's account"
+  ],
+  "must_not": [
+    "a total given before the advisor has been asked whose account it is, or a single total priced on one assumed owner",
+    "a figure put on the 10% additional tax other than the difference between two priced totals, or that tax added on top of the federal total",
+    "exempt_ira_distributions passed for the 55-year-old's account, or passed instead of the withdrawal",
+    "any tool name or field path in advisor-facing text"
+  ],
+  "gates": ["asks-whose-account", "no-fabricated-tax-figure"],
+  "notes": "A position does not say whose account paid out, so the calculator charges the 10% on a joint position unless both filers are 59½ or older. Steps 1 and 2 hold whatever the calculator does; Step 3's totals assume that rule is live."
+}
