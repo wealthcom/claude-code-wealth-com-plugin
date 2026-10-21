@@ -29,6 +29,13 @@ with the `version` field in `.claude-plugin/plugin.json`, and each release is ta
   - **`wealth-tax-executive-summary`** — rewrote `SKILL.md` and replaced the supporting docs with
     `references/knowledge-base.md` (federal/state tax-constant contracts and graceful degradation) and
     `references/example-riley.md` (the reference output to match for shape and tone).
+- **`wealth-tax-scenarios`** — the age exception to the 10% early-distribution tax now follows the
+  account owner. On a joint return priced from assumptions with the filers on either side of 59½,
+  the skill asks whose account an IRA or pension withdrawal comes from before pricing it, passes the
+  matching exempt amount for an owner who is 59½ or older, asks before or after 59½ for an
+  owner who is 59, and never puts a figure on the 10%, which sits inside the federal total. A filed
+  year rolled forward keeps the filed return's rule, and the skill says when its total may leave
+  that tax out. Adds the gating `early-distribution-owner-unstated.json` evaluation.
 
 ## [0.4.0] - 2026-09-02
 

@@ -36,6 +36,17 @@ then record it here — anything left unchecked is a tool-level gap, not a skill
 - [ ] credit line items
 - [ ] the state build, where there is one
 
+The 10% additional tax on an early IRA or pension distribution is NOT a component: it is already
+inside the federal total and the result has no line for it. A position does not say whose account
+paid out, so a `married_filing_jointly` position owes it unless both filers are 59½ or older;
+single, head-of-household and married-filing-separately positions use the primary filer's age and a
+qualifying-surviving-spouse position either filer's, and a missing age counts as under 59½. An
+amount also passed as `exempt_ira_distributions` / `exempt_pension_distributions` owes none of it
+and adds no income. A Roth conversion passed as `roth_conversion_taxable` owes none and takes no
+exempt amount; passing it there too counts it twice. A filed year rolled forward with
+`model_tax_scenario` owes none when either filer is 59½ or older. When to pass the exempt amounts
+is in SKILL.md under Calculate.
+
 ## Reading the constants — `get_federal_tax_constants`, `get_state_tax_constants`
 
 Pass the tax year and filing status (plus `states` for the state tool). Never from memory — both
@@ -55,6 +66,8 @@ The handful that change a scenario's number, and that a correct worksheet has to
   — a high earner is held to the floor by the phase-out, not capped at it.
 - **Surtaxes ride on top.** Net investment income tax (3.8%) and the additional Medicare tax (0.9%)
   carry their own thresholds and belong in the total as separate components, not inside the bracket tax.
+- **The early-distribution 10% is not a surtax.** It is already inside the federal total, with no
+  line of its own (see `run_tax_calculation` above).
 - **State — read `structure` first.** `GRADUATED` is a marginal ladder, `FLAT` is one rate from the
   first dollar, `NONE` is no state income tax, `NARROW_BASE` taxes only certain income (name it).
   Only SINGLE and MARRIED_FILING_JOINTLY columns exist; local income taxes are excluded; the
