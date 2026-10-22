@@ -102,7 +102,7 @@ the document handles, and the rate reconciliation, so no separate baseline hop i
 `get_extraction_result` for what's uploaded; take remaining facts from the conversation. The
 constants tools still supply every rule. There is no reconciliation spine, so the output is a
 planning scan — do not claim the return reconciles or is complete; where a missing record blocks an
-insight that otherwise looks applicable, name it under Where More Is Needed.
+insight that otherwise looks applicable, name it under Where more is needed.
 
 See [references/knowledge-base.md](references/knowledge-base.md) for the tool contracts,
 per-check extraction labels, and what the constants tools do not cover yet.
@@ -119,10 +119,10 @@ Schedule E is not a review.
 
 | Check | The question | Lands in |
 |---|---|---|
-| 1 — Reconciliation & consistency | Does the return tie to itself, and do fields that should agree, agree? Three layers — internal ties, inter-form presence, and the schedule carry map; see the KB | Return Anomalies |
-| 2 — Expected-but-absent | Is something missing that should be there? | Questions to Validate, Threshold & Timing Signals |
-| 3 — Threshold proximity | Where does the household sit vs a cliff or band edge? | Threshold & Timing Signals |
-| 4 — Composition ratio | What does the mix reveal that the totals don't? | Threshold & Timing Signals, Planning Opportunities |
+| 1 — Reconciliation & consistency | Does the return tie to itself, and do fields that should agree, agree? Three layers — internal ties, inter-form presence, and the schedule carry map; see the KB | Return anomalies |
+| 2 — Expected-but-absent | Is something missing that should be there? | Questions to validate, Threshold signals |
+| 3 — Threshold proximity | Where does the household sit vs a cliff or band edge? | Threshold & timing signals |
+| 4 — Composition ratio | What does the mix reveal that the totals don't? | Threshold signals, Planning opportunities |
 
 **Planning pass — which client conversations do the facts support?** Synthesizes facts across
 sources rather than reading one line in isolation. A trigger family renders **only when
@@ -142,7 +142,7 @@ client's own figures cross the specific threshold, never as a generic reminder. 
 in the knowledge base.
 
 Triage every prompt to one of three: answerable from the materials (a **check**), answerable only
-with data they don't carry (a **question in Questions to Validate**), or advice / needs-analysis
+with data they don't carry (a **question in Questions to validate**), or advice / needs-analysis
 (**out of scope**).
 
 ## Compute
@@ -174,7 +174,7 @@ Only what a check requires; the server computes most figures — take them as-is
   "safe harbor" amount echoed on the lookback, or the sum of next year's 1040-ES vouchers, is a
   planning estimate, not the requirement; do not state a shortfall or cushion from it. If neither
   prong can be reproduced from the materials, give the return-confirmed penalty in dollars and route
-  the withholding question to Questions to Validate.
+  the withholding question to Questions to validate.
 
 Distance and rate are position. Projected savings and the dollar effect of a change the household
 did not make do not appear — that is the scenario-modeling handoff.
@@ -203,8 +203,8 @@ observations and modeled outcomes separate.
 
 Title: `# Tax Insights — {Family} Family — Tax Year {YYYY}`. Then these `##` sections, in order,
 beginning at the first that has content — no preamble, no household or income recap. Omit any empty
-section rather than padding. Each `##` heading is the section name below verbatim, in title case
-(`## Threshold & Timing Signals`). These are quick hitters: each item earns its place by prompting a
+section rather than padding. Each `##` heading is the section name below verbatim, in sentence case
+(`## Threshold & timing signals`). These are quick hitters: each item earns its place by prompting a
 conversation the advisor can act on, then stops — the advisor digs deeper by asking.
 
 Keep every item scannable — lead with the figures, and hold the prose to what an advisor needs to
@@ -214,11 +214,11 @@ the sentences that carry them.
 
 | # | Section | Fed by | Rendering |
 |---|---|---|---|
-| 1 | Return Anomalies | 1 | Figures or classifications that may need correction. One `###` per item in the anomaly format below. First, because they may be errors |
-| 2 | Planning Opportunities | Planning pass | One `###` per opportunity in the format below. Conditional only — each tied to a client fact |
-| 3 | Threshold & Timing Signals | 2, 3, 4 | Lead with the shadow-tax position grouped by driver (each threshold its own MAGI), then the threshold table below covering every threshold the household is close to or over (a comfortably-clear threshold is still not measured). A trigger that carries a consequence gets a footnote on its row, not a `###` |
-| 4 | Questions to Validate | 2, and any check needing records the materials don't carry | Each a question, then one line on what prompts it |
-| 5 | Where More Is Needed | 2 | Optional, and usually omitted. Only for an insight that looks applicable from the data but can't be fully stood up without a specific input the materials lack — name the insight and the one missing input, nothing more. Not a general limitations notice, and not a recital of what was reviewed |
+| 1 | Return anomalies | 1 | Figures or classifications that may need correction. One `###` per item in the anomaly format below. First, because they may be errors |
+| 2 | Planning opportunities | Planning pass | One `###` per opportunity in the format below. Conditional only — each tied to a client fact |
+| 3 | Threshold & timing signals | 2, 3, 4 | Lead with the shadow-tax position grouped by driver (each threshold its own MAGI), then the threshold table below covering every threshold the household is close to or over (a comfortably-clear threshold is still not measured). A trigger that carries a consequence gets a footnote on its row, not a `###` |
+| 4 | Questions to validate | 2, and any check needing records the materials don't carry | Each a question, then one line on what prompts it |
+| 5 | Where more is needed | 2 | Optional, and usually omitted. Only for an insight that looks applicable from the data but can't be fully stood up without a specific input the materials lack — name the insight and the one missing input, nothing more. Not a general limitations notice, and not a recital of what was reviewed |
 
 The output carries no **Sources** or citation line — it ends at the last section that has content.
 Tax-law thresholds still come only from the constants tools and never from memory, but the delivered
@@ -226,7 +226,7 @@ insights do not cite a publisher; the advisor reads figures, not citations. The 
 below are not citations: each carries the consequence of a threshold position, never a source.
 
 **Shadow taxes** is the advisor-facing name for the AGI/MAGI-driven cliffs (NIIT, IRMAA,
-phase-outs). Lead Threshold & Timing Signals with it, grouped by cause not figure — each provision
+phase-outs). Lead Threshold & timing signals with it, grouped by cause not figure — each provision
 modifies AGI its own way, so the lead never states a single household MAGI.
 
 **Year frame.** The filed return is the evidence year; it is closed. Planning opportunities always
@@ -278,10 +278,10 @@ sizing against the action year's figures is the scenario-modeling handoff. Never
   observational voice as the rest. Every marker has a definition and every definition a marker. A
   consequence spanning several rows (a crowded band) is one footnote on the row that drives it.
 
-**Questions to Validate format** — each item a paragraph: `**Question?** one line on what prompts
+**Questions to validate format** — each item a paragraph: `**Question?** one line on what prompts
 it`.
 
-**Presentation.** State position, never direction. Questions to Validate are phrased
+**Presentation.** State position, never direction. Questions to validate are phrased
 as questions. Anomalies name the line ("the 1099-R reports $48,000 gross with no taxable amount and
 no rollover notation"). Absolute figures only; pair every rate with its dollars and income basis;
 name the provision beside any MAGI; name the year beside any year-dependent figure or effect; one
@@ -298,10 +298,10 @@ Brief; the deep handling is in the knowledge base.
 - **Lookback returns a different tax year than named** → say so in the first line and confirm
   before continuing.
 - **Response condensed** (`note` says so) → shadow-tax positions still work; a band-edge distance
-  you can't compute is simply not surfaced, or goes under Where More Is Needed if it blocks an
+  you can't compute is simply not surfaced, or goes under Where more is needed if it blocks an
   applicable insight.
 - **A filer's DOB is missing** → age-gated checks are *unavailable*, not clean; stay silent unless
-  the gap blocks an applicable insight, then name it under Where More Is Needed.
+  the gap blocks an applicable insight, then name it under Where more is needed.
 - **A constants tool has no data for the year** → search the named publishers; if still
   unverifiable, drop the item — never estimate or use a remembered value — and surface it only where
   it blocks an applicable insight.

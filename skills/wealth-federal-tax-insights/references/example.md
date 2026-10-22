@@ -11,10 +11,10 @@
 > rather than against the specific dollars.
 >
 > Every section carries content in this one. A household whose reconciliation checks all tie would
-> show no `## Return Anomalies` section at all — an empty section is omitted, not padded, and the
+> show no `## Return anomalies` section at all — an empty section is omitted, not padded, and the
 > review never enumerates the stops it walked and cleared.
 
-## Return Anomalies
+## Return anomalies
 
 ### Schedule E rental reports no depreciation
 
@@ -29,7 +29,7 @@
   was omitted or the property is non-depreciable — land-only or fully depreciated — is not something
   the return settles.
 
-## Planning Opportunities
+## Planning opportunities
 
 ### Retirement-plan design against two self-employed incomes
 
@@ -141,7 +141,7 @@ catch-up, and when will Devin enroll in Medicare?
 **Conversation to have.** Is the giving recurring, and is there openness to gifting shares in-kind or
 funding a donor-advised fund?
 
-## Threshold & Timing Signals
+## Threshold & timing signals
 
 Two of the Kapoors' shadow taxes — the AGI- and MAGI-driven cliffs — are already live, and each
 measures its own modification of income. Net investment income tax is assessed at $1,881: NIIT MAGI
@@ -167,7 +167,7 @@ year — she turns 65 in 2029 — is priced on 2027 income.
     $500,000, phases down the SALT deduction. It is the constraint behind the Roth-conversion sizing
     above.
 
-## Questions to Validate
+## Questions to validate
 
 **Does either spouse hold a retirement plan outside this return?** Schedule C Line 19 and Schedule 1
 Line 16 are both $0, but a plan held elsewhere would not appear here.

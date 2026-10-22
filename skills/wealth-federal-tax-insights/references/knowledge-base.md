@@ -17,7 +17,7 @@ authoritative. When sources disagree, present the conflict and ask.
 
 ## Integrity pass — the checks
 
-### Mode 1 — Reconciliation and consistency → Return Anomalies
+### Mode 1 — Reconciliation and consistency → Return anomalies
 
 Reads the extraction form, not the lookback. Three layers, all high-value and low-drag: each
 **reads an amount and matches it**, and none recomputes a subtotal from its components — that is a
@@ -96,15 +96,15 @@ which renumber (post-OBBBA adds Schedule 1-A).
   amount — is a probable extraction artifact. It is the *flag* that fails the consistency gate, as
   unreliable data, so it is dropped, never surfaced. A boolean becomes reportable only when a numeric
   line corroborates it; where such a flag would change the tax and cannot be reconciled against the
-  amounts, it is a question in Questions to Validate, never an anomaly.
+  amounts, it is a question in Questions to validate, never an anomaly.
 
 **Cross-field consistency — do two fields that should agree, agree?** Folded in here; these also
-land in Return Anomalies. Occupation "retired" alongside Schedule C income (RTS Q33); a state return
+land in Return anomalies. Occupation "retired" alongside Schedule C income (RTS Q33); a state return
 inconsistent with the residence the federal return implies; state tax paid to a state that levies
 none; tax-exempt interest with no Schedule B detail. Where the mismatch can only be resolved against
-CRM records the skill lacks, it is a **question in Questions to Validate**, not an anomaly.
+CRM records the skill lacks, it is a **question in Questions to validate**, not an anomaly.
 
-### Mode 2 — Expected-but-absent → Questions to Validate, Threshold & Timing Signals
+### Mode 2 — Expected-but-absent → Questions to validate, Threshold signals
 
 - **Named absences:** self-employed health insurance, IRA, HSA, SEP / solo 401(k) — each
   against whether the return shows the income or coverage that would make it available.
@@ -138,10 +138,10 @@ to a 401(k) or 403(b) live on the W-2 — Box 12 (codes D, E, G, S, AA, …) and
 plan indicator — never on the 1040, which shows only the above-the-line IRA, SEP, and solo-401(k)
 adjustments on Schedule 1. So with wages present but no W-2 in the materials, whether either spouse
 already defers, and how much capacity is left, is *unknown*: a contribution-capacity conversation
-ships as a question (or a **Where More Is Needed** gap naming the W-2), never as an asserted absence
+ships as a question (or a **Where more is needed** gap naming the W-2), never as an asserted absence
 of contributions.
 
-### Mode 3 — Threshold proximity → Threshold & Timing Signals
+### Mode 3 — Threshold proximity → Threshold & timing signals
 
 **Shadow taxes** — the AGI/MAGI-driven cliffs (NIIT, IRMAA, phase-outs). The shared cause is AGI,
 **not a shared number**: IRMAA adds back tax-exempt interest and NIIT does not, so the same
@@ -179,10 +179,10 @@ Check `structure` first — a flat state has no band edge, a no-income-tax state
 
 **Degradation:** bracket distances need `bracketDistribution`, the first thing dropped when the
 response is condensed. Check `note`; shadow-tax positions still work (they run off AGI/MAGI), while
-a band-edge distance you can't compute is simply not surfaced — or goes under Where More Is Needed
+a band-edge distance you can't compute is simply not surfaced — or goes under Where more is needed
 if it blocks an applicable insight.
 
-### Mode 4 — Composition ratio → Threshold & Timing Signals, Planning Opportunities
+### Mode 4 — Composition ratio → Threshold signals, Planning opportunities
 
 Reads the mix, not the magnitude.
 
@@ -249,7 +249,7 @@ echoed on the lookback, or the sum of the coming year's 1040-ES vouchers, is a p
 is often not the governing figure — never state a shortfall or a cushion from it. When the
 prior-year return isn't in the materials only the 90%-current-year prong is reproducible; if neither
 prong can be stood up, ship the return-confirmed underpayment penalty in dollars and route the
-withholding question to Questions to Validate rather than naming a shortfall.
+withholding question to Questions to validate rather than naming a shortfall.
 
 ---
 
@@ -321,7 +321,7 @@ enumerated, not emergent (four good items and an unopened Schedule E is not a re
 is not a list to report. The output carries only items that prompt a conversation or a correction; a
 stop that was walked and held simply produces no line, and there is no "nothing observed"
 enumeration and no recital of everything reviewed — that silence is the brevity the advisor asked
-for. The one place a walked stop reaches the page without a finding is **Where More Is Needed**: when
+for. The one place a walked stop reaches the page without a finding is **Where more is needed**: when
 a stop surfaces an insight that looks applicable but the materials can't fully support it, name it
 there against the single missing input.
 
