@@ -117,8 +117,7 @@ CRM records the skill lacks, it is a **question in Questions to validate**, not 
 - **ACA premium subsidy alert:** coarse trigger — no filer 65+, and no wage income. A pre-Medicare
   household on portfolio/retirement income whose marketplace credit is driven by a manageable MAGI.
   Ship as a **question** ("no wages, both filers under 65 — is anyone covered through the
-  marketplace?"), not a calculation; quantifying it needs `PREMIUM_TAX_CREDIT`, not in the tool
-  yet. Suppress if a Form 8962 or 1095-A is already present.
+  marketplace?"), not a calculation; quantifying it needs `PREMIUM_TAX_CREDIT`. Suppress if a Form 8962 or 1095-A is already present.
 
 **Suppression partner — absent is not always missing.** Establish the precondition before firing:
 
@@ -235,7 +234,11 @@ last (wages ended or down, past 59½ and pre-RMD, pretax assets implied). A peak
 year is the anti-signal, not a candidate: the item keys off *relatively low* income, never income
 size. The IRMAA two-year lookback and the NIIT ceiling — the same positions the threshold table
 already carries — are the coupled constraint the conversation must respect, since a conversion
-lifts MAGI. Sizing (how much, to which ceiling, over how many years) is multi-year and
+lifts MAGI. Keep the year chain explicit: the filed return has already set the premium year two
+years after it (a 2025 return → 2027 premiums), so no conversion can change that year. A
+conversion in the action year — the next unfiled year — lifts that year's MAGI and sets the
+premium year two years later (a 2026 conversion → 2028 premiums). The same chain applies to any
+lever that moves MAGI, not only conversions. Sizing (how much, to which ceiling, over how many years) is multi-year and
 assumption-heavy, so it is always a scenario-modeling handoff, never a figure stated here; where
 the lookback holds one year, say so rather than implying a multi-year read.
 
@@ -353,13 +356,21 @@ get_federal_tax_constants({ taxYear, filingStatus, sections? })
 | `CAPITAL_GAINS` | 0% and 15% ceilings for long-term gains and qualified dividends |
 | `SURTAXES` | Net investment income tax and Additional Medicare tax — rates and thresholds |
 | `SAFE_HARBOR` | Current- and prior-year percentages, the high-income AGI trigger, de minimis balance |
-| `IRMAA` | Medicare Part B and Part D tiers for the premium year this return drives |
+| `IRMAA` | Medicare IRMAA surcharge tiers — one combined monthly amount per person — for the premium year this return drives |
 | `SENIOR_DEDUCTION` | The enhanced deduction for filers age 65 or older (2025–2028) |
 | `ALTERNATIVE_MINIMUM_TAX` | Exemption, phase-out threshold and rate, and the 28% rate threshold |
 | `QUALIFIED_BUSINESS_INCOME` | Section 199A threshold, phase-in range, and the 2026 minimum deduction |
-| `EARNED_INCOME_CREDIT` | Maximum credit, earned income amount, and phase-out band by child count |
 | `CHILD_TAX_CREDIT` | Maximum per child, refundable portion, other-dependent credit, phase-out |
 | `GIFT_AND_ESTATE` | Annual gift exclusion, non-citizen spouse exclusion, lifetime basic exclusion |
+| `RETIREMENT_LIMITS` | Elective-deferral and catch-up limits; SEP, SIMPLE, solo-401(k), and IRA contribution limits and deductibility phase-outs |
+| `HSA_LIMITS` | Annual HSA contribution limits (self-only vs. family) and the age-55 catch-up |
+| `QCD` | Qualified charitable distribution annual limit (age-70½ eligible) |
+| `SOCIAL_SECURITY_TAXABILITY` | Provisional-income thresholds that set the taxable share of Social Security |
+| `CHARITABLE` | AGI ceilings by gift type (cash vs. appreciated property) and the carryforward rule |
+| `PREMIUM_TAX_CREDIT` | ACA applicable-percentage table and the federal-poverty-line bands |
+| `KIDDIE_TAX` | Unearned-income thresholds and the rate on a dependent child's unearned income |
+| `SECTION_121_EXCLUSION` | Primary-residence capital-gain exclusion by filing status |
+| `DEPRECIATION` | Section 179 expensing, bonus-depreciation percentage, and luxury-auto caps |
 
 Across the modes, insights leans on `ORDINARY_BRACKETS`, `CAPITAL_GAINS`, `SURTAXES`, `SAFE_HARBOR`,
 and `IRMAA` for the Mode 3 threshold positions; `STANDARD_DEDUCTION` and `SALT_CAP` for the itemized
@@ -373,14 +384,17 @@ statement:
 
 - **SALT is not a $10,000 cap for a high earner.** The cap is the larger figure; the phase-out
   reduces it and floors it at $10,000. Say the household is held to the floor by the phase-out.
+  The SALT threshold is `phaseout_threshold`, where the phase-down begins — the figure a
+  threshold-table SALT row cites, even for a household already past `floor_reached_at_magi`. That
+  is only where the cap bottoms out at the floor; never list it as a threshold.
 - **The bracket bands are ordinary taxable income**, with preferential income stacked above ordinary. Measure
   the marginal ordinary bracket on taxable income *less* preferential income, and quote the
   thresholds exactly as returned — the ladder is only as good as the row the marker sits on.
 - **The standard deduction on the lookback omits the age-65 addition.** Build the age-adjusted figure
   from the tool's base plus its addition, per qualifying filer.
 
-`sources` maps each returned section to its publisher — use it for the output's **Sources** line.
-Figures read off the client's return need no citation; anything from this tool does.
+`sources` maps each returned section to its publisher — use it to resolve a constant you need to
+verify, not for output: the delivered insights carry no Sources or citation line.
 
 #### IRMAA
 
@@ -396,6 +410,14 @@ and that year is usually unpublished when the return is filed.
 When `published` is `false`, the tiers are the most recent published year's — say which year you
 measured against and note the real thresholds may shift. Never present the filing year's own tiers as
 the household's future tier.
+
+- **Phrasing.** "This 2025 return sets 2027 premiums; measured against 2026 tiers, the most recent
+  published — 2027 tiers are not yet published and may shift." Never "under 2027 published rates"
+  (or any "published" wording for `premiumYear`) unless `published` is `true`.
+- **Surcharge dollars** carry the proxy year's label when the tiers are a proxy ("$X/month on 2026
+  tiers"), never the premium year's.
+- **Threshold-table rows** name the tier year in the label: "IRMAA tier boundary (2026 tiers, proxy
+  for 2027) — $X", not "2027 IRMAA tier boundary".
 
 ### Graceful degradation
 
