@@ -18,7 +18,7 @@
 
 ### Schedule E rental reports no depreciation
 
-**Impact.** $7,130 — Net rental income reported on Schedule E with $0 depreciation
+**Impact.** $7,130 — Net rental income on Schedule E, Line 21, with $0 depreciation
 
 - The Arlington property (1430 21st St S) is rented all 365 days, with **$42,000** of rents,
   $16,000 of mortgage interest, and $34,870 of total expenses (return-confirmed).
@@ -156,9 +156,9 @@ year — she turns 65 in 2029 — is priced on 2027 income.
 | Threshold | Limit | This household | Distance |
 | --- | --- | --- | --- |
 | 199A QBI threshold (MFJ)[^1] | $394,600 taxable income | $395,243 taxable income before QBI | $643 above |
-| 24% → 32% federal ordinary bracket | $394,600 | $297,794 ordinary taxable income | $96,806 below |
+| 24% → 32% federal ordinary bracket | $394,600 ordinary taxable income | $297,794 ordinary taxable income | $96,806 below |
 | NIIT threshold (MFJ) | $250,000 MAGI | $445,743 NIIT MAGI | $195,743 above; $1,881 assessed |
-| Additional Medicare Tax threshold (MFJ) | $250,000 | $376,973 self-employment earnings | $126,973 above; $1,143 assessed |
+| Additional Medicare Tax threshold (MFJ) | $250,000 wages + self-employment earnings | $376,973 self-employment earnings | $126,973 above; $1,143 assessed |
 | SALT cap phase-out | $500,000 MAGI | $445,743 MAGI | $54,257 below |
 
 [^1]: **The $394,600–$500,000 band is crowded.** On the 2025 figures, the 199A cliff and the
