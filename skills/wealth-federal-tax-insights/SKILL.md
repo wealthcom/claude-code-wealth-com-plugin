@@ -267,12 +267,13 @@ sizing against the action year's figures is the scenario-modeling handoff. Never
 **Threshold table format** — four columns, `| Threshold | Limit | This household | Distance |`:
 
 - **Threshold** — the provision, with filing status where it matters (`NIIT threshold (MFJ)`). When
-  the position carries a consequence, a `[^n]` marker follows the name directly.
+  the position carries a consequence, a `[^n]` marker follows the name directly — in this cell
+  only, never in Limit, This household, or Distance.
 - **Limit** — the threshold figure with its income basis (`$250,000 MAGI`), from the constants tools.
 - **This household** — the household's figure with its measure named (`$791,038 NIIT MAGI`).
 - **Distance** — exactly `$<amount> above` or `$<amount> below`, optionally followed by
   `; <short note>` (`$541,038 above; $2,449 assessed`). Nothing else in the cell: no sign, no prose
-  before the amount, no second figure outside the note.
+  before the amount, no second figure outside the note, no footnote marker.
 - **Footnotes** — place every definition directly under the table as `[^n]: **Short title.**
   Body…`: the consequence of the position, in the same observational voice as the rest. Every
   marker has a definition and every definition a marker. A consequence spanning several rows (a
