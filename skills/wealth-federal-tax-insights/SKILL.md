@@ -273,10 +273,10 @@ sizing against the action year's figures is the scenario-modeling handoff. Never
 - **Distance** — exactly `$<amount> above` or `$<amount> below`, optionally followed by
   `; <short note>` (`$541,038 above; $2,449 assessed`). Nothing else in the cell: no sign, no prose
   before the amount, no second figure outside the note.
-- **Footnotes** — number markers `[^1]`, `[^2]`, … in table order. Place every definition directly
-  under the table as `[^n]: **Short title.** Body…`: the consequence of the position, in the same
-  observational voice as the rest. Every marker has a definition and every definition a marker. A
-  consequence spanning several rows (a crowded band) is one footnote on the row that drives it.
+- **Footnotes** — place every definition directly under the table as `[^n]: **Short title.**
+  Body…`: the consequence of the position, in the same observational voice as the rest. Every
+  marker has a definition and every definition a marker. A consequence spanning several rows (a
+  crowded band) is one footnote on the row that drives it.
 
 **Questions to validate format** — each item a paragraph: `**Question?** one line on what prompts
 it`.
