@@ -287,9 +287,9 @@ no rollover notation"). Absolute figures only; pair every rate with its dollars 
 name the provision beside any MAGI; name the year beside any year-dependent figure or effect; one
 final figure per statement. Bold the decisive dollar figures in anomaly and opportunity bullets
 (`**$34,000**`) — the one or two each bullet turns on, not every figure; the Impact line, table
-cells, and footnotes stay unbolded. Attribute to the document ("the
-federal return shows"), never to a tool, field, or screen. Never carry a figure from the example —
-it belongs to a real household and to that household alone. 
+cells, and footnote bodies stay unbolded (a footnote keeps its bold title). Attribute to the
+document ("the federal return shows"), never to a tool, field, or screen. Never carry a figure
+from the example — it belongs to a real household and to that household alone. 
 
 ## Common issues
 

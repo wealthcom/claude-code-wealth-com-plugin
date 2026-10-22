@@ -18,7 +18,7 @@
 
 ### Schedule E rental reports no depreciation
 
-**Impact.** $7,130 — Net rental income on Schedule E, Line 21, with $0 depreciation
+**Impact.** $7,130 — Net rental income on Schedule E, Line 21, with no depreciation deducted
 
 - The Arlington property (1430 21st St S) is rented all 365 days, with **$42,000** of rents,
   $16,000 of mortgage interest, and $34,870 of total expenses (return-confirmed).
