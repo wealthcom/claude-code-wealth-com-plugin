@@ -241,9 +241,9 @@ sizing against the action year's figures is the scenario-modeling handoff. Never
 **Return anomaly format** — under the `###` title, in this order:
 
 - **Impact** — the opening paragraph, `**Impact.** $9,048 — Penalty assessed on Form 540, Line 92`:
-  one absolute dollar figure, an em dash, and a short caption naming what the figure is and the line
-  it sits on. Exactly one per anomaly. The figure is an amount the return reports that the anomaly
-  touches — never a rate, a range, or an estimate of what a correction would change.
+  one absolute figure plus a short caption. Exactly one per anomaly. The figure is an amount the
+  return reports that the anomaly touches — never a rate, a range, or an estimate of what a
+  correction would change.
 - **Facts** — a `-` bullet list, one fact per bullet with its provenance: the line, what it shows,
   what it should show, what follows.
 
