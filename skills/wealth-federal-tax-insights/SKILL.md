@@ -203,7 +203,8 @@ observations and modeled outcomes separate.
 
 Title: `# Tax Insights — {Family} Family — Tax Year {YYYY}`. Then these `##` sections, in order,
 beginning at the first that has content — no preamble, no household or income recap. Omit any empty
-section rather than padding. These are quick hitters: each item earns its place by prompting a
+section rather than padding. Each `##` heading is the section name below verbatim, in sentence case
+(`## Threshold & timing signals`). These are quick hitters: each item earns its place by prompting a
 conversation the advisor can act on, then stops — the advisor digs deeper by asking.
 
 Keep every item scannable — lead with the figures, and hold the prose to what an advisor needs to
@@ -213,15 +214,16 @@ the sentences that carry them.
 
 | # | Section | Fed by | Rendering |
 |---|---|---|---|
-| 1 | Return anomalies | 1 | Figures or classifications that may need correction. One `###` per item: the line, what it shows, what it should show, what follows. First, because they may be errors |
+| 1 | Return anomalies | 1 | Figures or classifications that may need correction. One `###` per item in the anomaly format below. First, because they may be errors |
 | 2 | Planning opportunities | Planning pass | One `###` per opportunity in the format below. Conditional only — each tied to a client fact |
-| 3 | Threshold & timing signals | 2, 3, 4 | Lead with the shadow-tax position grouped by driver (each threshold its own MAGI), then a table `Threshold \| This household \| Distance` covering every threshold the household is close to or over (a comfortably-clear threshold is not measured); then a short `###` per trigger that carries a consequence |
+| 3 | Threshold & timing signals | 2, 3, 4 | Lead with the shadow-tax position grouped by driver (each threshold its own MAGI), then the threshold table below covering every threshold the household is close to or over (a comfortably-clear threshold is still not measured). A trigger that carries a consequence gets a footnote on its row, not a `###` |
 | 4 | Questions to validate | 2, and any check needing records the materials don't carry | Each a question, then one line on what prompts it |
 | 5 | Where more is needed | 2 | Optional, and usually omitted. Only for an insight that looks applicable from the data but can't be fully stood up without a specific input the materials lack — name the insight and the one missing input, nothing more. Not a general limitations notice, and not a recital of what was reviewed |
 
 The output carries no **Sources** or citation line — it ends at the last section that has content.
 Tax-law thresholds still come only from the constants tools and never from memory, but the delivered
-insights do not cite a publisher; the advisor reads figures, not footnotes.
+insights do not cite a publisher; the advisor reads figures, not citations. The threshold footnotes
+below are not citations: each carries the consequence of a threshold position, never a source.
 
 **Shadow taxes** is the advisor-facing name for the AGI/MAGI-driven cliffs (NIIT, IRMAA,
 phase-outs). Lead Threshold & timing signals with it, grouped by cause not figure — each provision
@@ -236,29 +238,59 @@ item cites the filed year's thresholds as the reference point, say they are that
 sizing against the action year's figures is the scenario-modeling handoff. Never write an unanchored
 "this year" or "next year" — name the year.
 
-**Planning opportunity format** — four parts, kept tight:
+**Return anomaly format** — under the `###` title, in this order:
 
-- **Why this surfaced** — the client-specific facts that activated it, provenance stated naturally,
-  plus a brief clause on how the lever works so the advisor can judge whether it applies. Where the
-  opportunity turns on a fact the materials don't establish — pretax balances exist, the business is
-  a passthrough — state the confirmation the feasibility turns on ("to determine feasibility, confirm
-  the household holds pretax IRA/401(k) balances") rather than labeling the fact *unknown* or
-  assuming it. A sentence or two; the mechanics are the advisor's to ask about, not to spell out.
-- **Conversation to have** — the focused questions that determine fit, feasibility, or client
-  intent.
-- **Useful documents** — records that would confirm the facts or complete the analysis. Omit the
-  line when none is needed.
-- **Possible next analysis** — the scenario or comparison that could be modeled once inputs are
-  confirmed, naming the action year it would model. No invented outcome; omit when there is nothing
-  to model.
+- **Impact** — the opening paragraph, `**Impact.** $9,048 — Penalty assessed on Form 540, Line 92`:
+  one absolute figure plus a short caption. Exactly one per anomaly. The figure is an amount the
+  return reports that the anomaly touches — never a rate, a range, or an estimate of what a
+  correction would change.
+- **Facts** — a `-` bullet list, one fact per bullet with its provenance: the line, what it shows,
+  what it should show, what follows.
+
+**Planning opportunity format** — four labelled parts, kept tight:
+
+- **Why this surfaced** — `**Why this surfaced.**` on its own line, then a `-` bullet list, one
+  client-specific fact or mechanism per bullet, provenance stated naturally. Include a brief bullet
+  on how the lever works so the advisor can judge whether it applies. Where the opportunity turns on
+  a fact the materials don't establish — pretax balances exist, the business is a passthrough — give
+  the confirmation the feasibility turns on its own bullet ("to determine feasibility, confirm the
+  household holds pretax IRA/401(k) balances") rather than labeling the fact *unknown* or assuming
+  it. A few bullets; the mechanics are the advisor's to ask about, not to spell out.
+- **Conversation to have** — one paragraph after the label: the focused questions that determine
+  fit, feasibility, or client intent.
+- **Useful documents** — one paragraph after the label: records that would confirm the facts or
+  complete the analysis. Omit the part when none is needed.
+- **Possible next analysis** — one paragraph after the label: the scenario or comparison that could
+  be modeled once inputs are confirmed, naming the action year it would model. No invented outcome;
+  omit the part when there is nothing to model.
+
+**Threshold table format** — four columns, `| Threshold | Limit | This household | Distance |`:
+
+- **Threshold** — the provision, with filing status where it matters (`NIIT threshold (MFJ)`). When
+  the position carries a consequence, a `[^n]` marker follows the name directly — in this cell
+  only, never in Limit, This household, or Distance.
+- **Limit** — the threshold figure with its income basis (`$250,000 MAGI`), from the constants tools.
+- **This household** — the household's figure with its measure named (`$791,038 NIIT MAGI`).
+- **Distance** — exactly `$<amount> above` or `$<amount> below`, optionally followed by
+  `; <short note>` (`$541,038 above; $2,449 assessed`). Nothing else in the cell: no sign, no prose
+  before the amount, no second figure outside the note, no footnote marker.
+- **Footnotes** — place every definition directly under the table as `[^n]: **Short title.**
+  Body…`: the consequence of the position, in the same observational voice as the rest. Every
+  marker has a definition and every definition a marker. A consequence spanning several rows (a
+  crowded band) is one footnote on the row that drives it.
+
+**Questions to validate format** — each item a paragraph: `**Question?** one line on what prompts
+it`.
 
 **Presentation.** State position, never direction. Questions to validate are phrased
 as questions. Anomalies name the line ("the 1099-R reports $48,000 gross with no taxable amount and
 no rollover notation"). Absolute figures only; pair every rate with its dollars and income basis;
 name the provision beside any MAGI; name the year beside any year-dependent figure or effect; one
-final figure per statement. Attribute to the document ("the
-federal return shows"), never to a tool, field, or screen. Never carry a figure from the example —
-it belongs to a real household and to that household alone. 
+final figure per statement. Bold the decisive dollar figures in anomaly and opportunity bullets
+(`**$34,000**`) — the one or two each bullet turns on, not every figure; the Impact line, table
+cells, and footnote bodies stay unbolded (a footnote keeps its bold title). Attribute to the
+document ("the federal return shows"), never to a tool, field, or screen. Never carry a figure
+from the example — it belongs to a real household and to that household alone. 
 
 ## Common issues
 
