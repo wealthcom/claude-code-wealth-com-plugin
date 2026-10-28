@@ -165,20 +165,23 @@ Only what a check requires; the server computes most figures — take them as-is
   tiers; 2027 tiers not yet published").
 - **Ordinary taxable income** = taxable income less preferential income; bracket distances measure
   on that remainder. Preferential income is qualified dividends (Form 1040 line 3a) plus net
-  long-term gain — the smaller of Schedule D lines 15 and 16, or zero if either is a loss — capped
-  at taxable income. Schedule D line 15 is the gain alone and never contains the dividends, so
-  they are neither subtracted from it nor left out of the preferential stack.
+  capital gain — the smaller of Schedule D lines 15 and 16, or zero if either is a loss — capped at
+  taxable income. Schedule D line 15 is net long-term capital gain or loss. It includes capital
+  gain distributions but never qualified dividends, which are reported only on Form 1040 line 3a.
+  So qualified dividends are added to the preferential amount in full, never netted against line
+  15 or subtracted from it.
 - **Distance to a threshold** is a positive number with its direction in words, never signed.
-- **A preferential-rate position carries its consequence.** Above the 0% capital-gains breakpoint,
-  the household's qualified dividends and long-term gains bear 15% (or 20% above the upper
-  breakpoint) — state that rate and the dollars it falls on, not merely that no 0% room remains.
-  28%-rate gain (Schedule D line 18) and unrecaptured section 1250 gain (line 19) are the
-  exception: the Schedule D Tax Worksheet taxes them at up to 28% and 25%, so name them and their
-  rates separately rather than folding them into the 20% figure. Lines 18 and 19 are the amounts
-  Schedule D reports in those categories, not the dollars taxed at those rates — when losses leave
-  net capital gain below their sum, the worksheet taxes less — so pair each rate with its reported
-  amount as a ceiling ("$610,439 of 28%-rate gain, taxed at up to 28%"), never as the rate those
-  dollars bear.
+- **State the band the preferential income tops out in, and the room left in it.** Qualified
+  dividends and net capital gain sit on top of ordinary income, so taxable income determines the
+  band. Name that band's rate (0%, 15% or 20%) and the room left before the next breakpoint: the
+  breakpoint minus taxable income. Don't just say the household is above or below a threshold. In
+  the 20% band there's no next breakpoint, so state the rate and say no higher preferential band
+  exists. Two items in Schedule D are exceptions. 28%-rate gain (line 18) and unrecaptured section
+  1250 gain (line 19) go through the Schedule D Tax Worksheet at up to 28% and 25%. Name them and
+  their rates separately from the band rate. Lines 18 and 19 report how much gain falls in those
+  categories, not how much is taxed at those rates. Losses, taxable income, or a lower ordinary
+  bracket can reduce the tax. So present each amount as a ceiling ("$610,439 of 28%-rate gain,
+  taxed at up to 28%"), never as the rate those dollars actually bear.
 - **The safe-harbor requirement is a reproduced prong, never a figure taken on faith** — the lesser
   of 90% of this year's tax or 100%/110% of last year's, built from the return and the constants. A
   "safe harbor" amount echoed on the lookback, or the sum of next year's 1040-ES vouchers, is a
