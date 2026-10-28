@@ -176,7 +176,9 @@ Only what a check requires; the server computes most figures — take them as-is
   exception: the Schedule D Tax Worksheet taxes them at up to 28% and 25%, so name them and their
   rates separately rather than folding them into the 20% figure. Lines 18 and 19 are the amounts
   Schedule D reports in those categories, not the dollars taxed at those rates — when losses leave
-  net capital gain below their sum, the worksheet taxes less — so present them as reported amounts.
+  net capital gain below their sum, the worksheet taxes less — so pair each rate with its reported
+  amount as a ceiling ("$610,439 of 28%-rate gain, taxed at up to 28%"), never as the rate those
+  dollars bear.
 - **The safe-harbor requirement is a reproduced prong, never a figure taken on faith** — the lesser
   of 90% of this year's tax or 100%/110% of last year's, built from the return and the constants. A
   "safe harbor" amount echoed on the lookback, or the sum of next year's 1040-ES vouchers, is a
