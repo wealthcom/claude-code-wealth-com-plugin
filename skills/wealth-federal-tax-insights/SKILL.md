@@ -180,7 +180,7 @@ Only what a check requires; the server computes most figures — take them as-is
   1250 gain (line 19) go through the Schedule D Tax Worksheet at up to 28% and 25%. Name them and
   their rates separately from the band rate. Lines 18 and 19 report how much gain falls in those
   categories, not how much is taxed at those rates. Losses, taxable income, or a lower ordinary
-  bracket can reduce the tax. So present each amount as a ceiling ("$610,439 of 28%-rate gain,
+  bracket can reduce the tax. So present each amount as a ceiling ("$<amount> of 28%-rate gain,
   taxed at up to 28%"), never as the rate those dollars actually bear.
 - **The safe-harbor requirement is a reproduced prong, never a figure taken on faith** — the lesser
   of 90% of this year's tax or 100%/110% of last year's, built from the return and the constants. A
