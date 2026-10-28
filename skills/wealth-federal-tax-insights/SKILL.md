@@ -165,8 +165,8 @@ Only what a check requires; the server computes most figures — take them as-is
   tiers; 2027 tiers not yet published").
 - **Ordinary taxable income** = taxable income less preferential income; bracket distances measure
   on that remainder. Preferential income is qualified dividends (Form 1040 line 3a) plus net
-  long-term gain — the smaller of Schedule D lines 15 and 16, or zero if either is a loss; Form 1040
-  line 7a when no Schedule D is filed — capped at taxable income. Schedule D line 15 is the gain
+  long-term gain — the smaller of Schedule D lines 15 and 16, or zero if either is a loss — capped
+  at taxable income. Schedule D line 15 is the gain
   alone and never contains the dividends, so they are neither subtracted from it nor left out of
   the preferential stack.
 - **Distance to a threshold** is a positive number with its direction in words, never signed.
